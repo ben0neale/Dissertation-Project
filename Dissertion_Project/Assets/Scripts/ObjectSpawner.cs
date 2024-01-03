@@ -63,8 +63,8 @@ public class ObjectSpawner : MonoBehaviour
     {
         Vector3 Pos;
         List<float> spawnSide = new List<float> { x1, x2 };
-        float direction = spawnSide[Random.Range(0, 1)]; 
-        Pos = new Vector3(direction , Random.Range(Player.transform.position.y, y1), 0);
+        float direction = spawnSide[Random.Range(0, 2)]; 
+        Pos = new Vector3(direction + Player.transform.position.x, Random.Range(Player.transform.position.y, Player.transform.position.y + y1), 0);
 
         Instantiate(Skier, Pos, Quaternion.identity, ObjParent.transform);
     }
