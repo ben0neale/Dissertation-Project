@@ -6,6 +6,7 @@ public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> Obsticals;
     [SerializeField] GameObject ObjParent;
+    [SerializeField] GameObject Player;
     public float x1;
     public float x2;
     public float y1;
@@ -17,6 +18,7 @@ public class ObjectSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         spawnInterval = _spawnInterval;
     }
 
@@ -38,7 +40,7 @@ public class ObjectSpawner : MonoBehaviour
         //Get random obstical from obstical list
         GameObject obj = Obsticals[Random.Range(0, Obsticals.Count)];
         //Get Random spawn position from provided range
-        Vector3 Pos = new Vector3(Random.Range(x1, x2), Random.Range(y1, y2), 0);
+        Vector3 Pos = new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), Random.Range(y1 + Player.transform.position.y, y2 +Player.transform.position.y), 0);
 
         //Instantiate chosen object at chosen position
         GameObject obstical = Instantiate(obj, Pos, Quaternion.identity, ObjParent.transform);

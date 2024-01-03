@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
+    Vector2 MoveValue;
     Rigidbody2D RB;
-    public float speed;
+    public float Xspeed;
+    public float Yspeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +18,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RB.velocity = new Vector2(MoveValue.x * Xspeed, -Yspeed);
     }
 
     void OnMove(InputValue MoveInput)
     {
-        Vector2 MoveValue = MoveInput.Get<Vector2>();
-        RB.velocity = MoveValue * speed;
+        MoveValue = MoveInput.Get<Vector2>();
+        //RB.velocity = RB.velocity + MoveValue * Xspeed;
         transform.rotation = Quaternion.Euler(0,0, -MoveValue.x * 15);
     }
 
