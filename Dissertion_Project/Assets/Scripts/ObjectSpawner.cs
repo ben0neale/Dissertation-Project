@@ -5,6 +5,7 @@ using UnityEngine;
 public class ObjectSpawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> Obsticals;
+    [SerializeField] GameObject Skier;
     [SerializeField] GameObject ObjParent;
     [SerializeField] GameObject Player;
     public float x1;
@@ -29,6 +30,7 @@ public class ObjectSpawner : MonoBehaviour
         if (spawnInterval <= 0)
         {
             ObsticalSpawn();
+            SkierSpawn();
             spawnInterval = _spawnInterval;
         }
         else
@@ -55,6 +57,15 @@ public class ObjectSpawner : MonoBehaviour
             Destroy(obstical);
             ObsticalSpawn();
         }
+    }
 
+    private void SkierSpawn()
+    {
+        Vector3 Pos;
+        List<float> spawnSide = new List<float> { x1, x2 };
+        float direction = spawnSide[Random.Range(0, 1)]; 
+        Pos = new Vector3(direction , Random.Range(Player.transform.position.y, y1), 0);
+
+        Instantiate(Skier, Pos, Quaternion.identity, ObjParent.transform);
     }
 }
