@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SkierController : MonoBehaviour
 {
+    [SerializeField] Animator Anim;
     [SerializeField] List<GameObject> Graphics;
     GameObject Player;
     Rigidbody2D RB;
@@ -32,9 +33,9 @@ public class SkierController : MonoBehaviour
         RB.velocity = new Vector2(Random.Range(minSpeed, maxSpeed) * direction, -Yspeed);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        RB.velocity = Vector2.zero;
+        Anim.Play("SkierFall");
     }
 }

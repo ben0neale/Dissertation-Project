@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] bool followX = true;
+    [SerializeField] bool followY = true;
     GameObject Player;
     Vector3 Offset;
     public float camSpeed;
@@ -18,6 +20,15 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, new Vector3(Player.transform.position.x - Offset.x, Player.transform.position.y - Offset.y, transform.position.z), camSpeed);
+        Vector3 Target;
+        if (followX && followY)
+            Target = new Vector3(Player.transform.position.x - Offset.x, Player.transform.position.y - Offset.y, transform.position.z);
+        else if (followX)
+            Target = new Vector3(Player.transform.position.x - Offset.x, transform.position.y, transform.position.z);
+        else if (followY)
+            Target = new Vector3(transform.position.x, Player.transform.position.y - Offset.y, transform.position.z);
+        else
+            Target = transform.position;
+        transform.position = Vector3.Lerp(transform.position, Target, camSpeed);
     }
 }
