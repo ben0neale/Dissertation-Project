@@ -20,4 +20,10 @@ public class DestroyObjects : MonoBehaviour
     {
         Destroy(collision.gameObject);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!other.gameObject.CompareTag("Ground"))
+            Destroy(other.gameObject);
+    }
 }
