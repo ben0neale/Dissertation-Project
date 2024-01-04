@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] List<GameObject> PlayerGraphics;
-
     Vector2 MoveValue;
     Rigidbody2D RB;
     public float Xspeed;
     public float Yspeed;
+
     // Start is called before the first frame update
     void Start()
     {

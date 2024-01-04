@@ -22,11 +22,11 @@ public class CameraController : MonoBehaviour
     {
         Vector3 Target;
         if (followX && followY)
-            Target = new Vector3(Player.transform.position.x - Offset.x, Player.transform.position.y - Offset.y, transform.position.z);
+            Target = new Vector3(Player.transform.position.x - Offset.x, Player.transform.position.y - Offset.y, Player.transform.position.z - Offset.z);
         else if (followX)
-            Target = new Vector3(Player.transform.position.x - Offset.x, transform.position.y, transform.position.z);
+            Target = new Vector3(Player.transform.position.x - Offset.x, transform.position.y, Player.transform.position.z - Offset.z);
         else if (followY)
-            Target = new Vector3(transform.position.x, Player.transform.position.y - Offset.y, transform.position.z);
+            Target = new Vector3(transform.position.x, Player.transform.position.y - Offset.y, Player.transform.position.z - Offset.z);
         else
             Target = transform.position;
         transform.position = Vector3.Lerp(transform.position, Target, camSpeed);
