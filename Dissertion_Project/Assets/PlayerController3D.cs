@@ -11,6 +11,7 @@ public class PlayerController3D : MonoBehaviour
     public float Xspeed;
     public float XMaxVelocity;
     public float ZMaxVelocity;
+    public float rotationSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,8 @@ public class PlayerController3D : MonoBehaviour
                     RB.velocity = new Vector3(RB.velocity.x, ZMaxVelocity, RB.velocity.z);*/
 
         RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -ZMaxVelocity);
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
     }
 
     void OnMove(InputValue MoveInput)
