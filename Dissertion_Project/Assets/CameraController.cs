@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         if (followX && followY)
             Target = new Vector3(Player.transform.position.x - Offset.x, Player.transform.position.y - Offset.y, Player.transform.position.z - Offset.z);
         else if (followX)
-            Target = new Vector3(Player.transform.position.x - Offset.x, transform.position.y, Player.transform.position.z - Offset.z);
+            Target = new Vector3(Player.transform.position.x - Offset.x, transform.position.y, transform.position.z);
         else if (followY)
             Target = new Vector3(transform.position.x, Player.transform.position.y - Offset.y, Player.transform.position.z - Offset.z);
         else

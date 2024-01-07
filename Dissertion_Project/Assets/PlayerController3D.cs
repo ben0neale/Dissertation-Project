@@ -13,9 +13,12 @@ public class PlayerController3D : MonoBehaviour
     public float ZMaxVelocity;
     public float rotationSpeed;
 
+    private float zSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
+        zSpeed = ZMaxVelocity;
         RB = GetComponent<Rigidbody>();
     }
 
@@ -29,7 +32,7 @@ public class PlayerController3D : MonoBehaviour
                 if (RB.velocity.y > -ZMaxVelocity)
                     RB.velocity = new Vector3(RB.velocity.x, ZMaxVelocity, RB.velocity.z);*/
 
-        RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -ZMaxVelocity);
+        RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -zSpeed);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
     }
@@ -40,10 +43,29 @@ public class PlayerController3D : MonoBehaviour
         // transform.rotation = Quaternion.Euler(0,0, -MoveValue.x * 15);
     }
 
+    IEnumerator Stumble()
+    {
+        zSpeed = ZMaxVelocity / 2;
+
+        yield return new WaitForSeconds(2);
+
+        zSpeed = ZMaxVelocity * 2;
+
+        yield return new WaitForSeconds(2);
+
+        zSpeed = ZMaxVelocity;
+
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstical"))
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Obstical"))
+            StartCoroutine(Stumble());
     }
 }

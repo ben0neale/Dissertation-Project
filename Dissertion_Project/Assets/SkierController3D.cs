@@ -22,6 +22,7 @@ public class SkierController3D : MonoBehaviour
             direction = 1;
 
         RB.velocity = new Vector3(Random.Range(minSpeed, maxSpeed) * direction, 0, -Yspeed);
+        transform.LookAt(RB.velocity * 100);
     }
 
     private void OnCollisionEnter(Collision collision)

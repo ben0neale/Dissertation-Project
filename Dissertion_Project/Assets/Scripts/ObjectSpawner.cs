@@ -10,6 +10,10 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] GameObject Skier;
     [SerializeField] GameObject ObjParent;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject Platform;
+    [SerializeField] GameObject StartPlat;
+    GameObject PrevPlat;
+
     public float x1;
     public float x2;
     public float y1;
@@ -21,12 +25,17 @@ public class ObjectSpawner : MonoBehaviour
     public float _spawnInterval;
     private float spawnInterval;
 
+    [SerializeField] float platSpawnDistance;
+    private float _platSpawnDistance;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         spawnInterval = _spawnInterval;
         SkierspawnInterval = _SkierspawnInterval;
+        _platSpawnDistance = Platform.transform.localScale.z / 2;
+        PrevPlat = StartPlat;
     }
 
     // Update is called once per frame
@@ -48,6 +57,12 @@ public class ObjectSpawner : MonoBehaviour
         }
         else
             SkierspawnInterval -= Time.deltaTime;
+
+        if (ThreeD && Player.transform.position.z <= -_platSpawnDistance)
+        {
+            PlatformSpawn();
+            _platSpawnDistance += Platform.transform.localScale.z; 
+        }
     }
 
     private void ObsticalSpawn()
@@ -92,5 +107,10 @@ public class ObjectSpawner : MonoBehaviour
             Pos = new Vector3(direction + Player.transform.position.x, 1.5f, Random.Range(Player.transform.position.z, Player.transform.position.z - y1));
 
         Instantiate(Skier, Pos, Quaternion.identity, ObjParent.transform);
+    }
+
+    private void PlatformSpawn()
+    {
+        PrevPlat = Instantiate(Platform, new Vector3(Player.transform.position.x, 0, PrevPlat.transform.position.z - Platform.transform.localScale.z), Quaternion.identity);
     }
 }
