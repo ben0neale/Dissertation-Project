@@ -78,7 +78,7 @@ public class ObjectSpawner : MonoBehaviour
             Pos = new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), .5f, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
         
         //Instantiate chosen object at chosen position
-        GameObject obstical = Instantiate(obj, Pos, Quaternion.identity, ObjParent.transform);
+        GameObject obstical = Instantiate(obj, Pos, Quaternion.Euler(0,Random.Range(0,360),0), ObjParent.transform);
 
         if (!ThreeD)
         {

@@ -6,18 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController3D : MonoBehaviour
 {
+    Animator anim;
     Vector3 MoveValue;
     Rigidbody RB;
     public float Xspeed;
     public float XMaxVelocity;
     public float ZMaxVelocity;
     public float rotationSpeed;
+    private bool stumbling = false;
+
+    private bool firstHit = false;
+    private GameObject objHit;
 
     private float zSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         zSpeed = ZMaxVelocity;
         RB = GetComponent<Rigidbody>();
     }
@@ -25,13 +31,6 @@ public class PlayerController3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(RB.velocity);
-
-        /*        if (RB.velocity.z > -ZMaxVelocity)
-                    RB.velocity = new Vector3(RB.velocity.x, RB.velocity.y, -ZMaxVelocity);
-                if (RB.velocity.y > -ZMaxVelocity)
-                    RB.velocity = new Vector3(RB.velocity.x, ZMaxVelocity, RB.velocity.z);*/
-
         RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -zSpeed);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
@@ -45,14 +44,17 @@ public class PlayerController3D : MonoBehaviour
 
     IEnumerator Stumble()
     {
-        zSpeed = ZMaxVelocity / 2;
+        anim.Play("PlayerStumble3D");
+        stumbling = true;
+        zSpeed = ZMaxVelocity - 5;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
-        zSpeed = ZMaxVelocity * 2;
+        zSpeed = ZMaxVelocity + 5;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
+        stumbling = false;
         zSpeed = ZMaxVelocity;
 
     }
@@ -66,6 +68,23 @@ public class PlayerController3D : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Obstical"))
-            StartCoroutine(Stumble());
+        {
+            if (!firstHit)
+            {
+                firstHit = true;
+                objHit = other.gameObject;
+            }
+
+            if (other.gameObject != objHit)
+            {
+                if (stumbling)
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                else
+                {
+                    objHit = other.gameObject;
+                    StartCoroutine(Stumble());
+                }
+            }
+        }
     }
 }
