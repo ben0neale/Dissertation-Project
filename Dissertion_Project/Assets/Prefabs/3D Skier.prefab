@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2562276483811742995}
   - component: {fileID: 2562276483811742994}
   - component: {fileID: 7218279835790628409}
+  - component: {fileID: 1344046485468257325}
   m_Layer: 0
   m_Name: 3D Skier
   m_TagString: Obstical
@@ -164,6 +165,19 @@ MonoBehaviour:
   minSpeed: 2
   maxSpeed: 15
   Yspeed: 8
+--- !u!65 &1344046485468257325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2562276483811742992}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2, z: 2.3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2671786424866373594
 GameObject:
   m_ObjectHideFlags: 0
