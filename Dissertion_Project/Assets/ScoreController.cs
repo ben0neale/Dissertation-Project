@@ -6,6 +6,7 @@ using TMPro;
 
 public class ScoreController : MonoBehaviour
 {
+    [SerializeField] GameObject highScoreTable;
     TextMeshProUGUI scoreText;
     public float UpdateTime;
     private float _updateTime;
@@ -30,5 +31,11 @@ public class ScoreController : MonoBehaviour
             _updateTime -= Time.deltaTime;
 
         scoreText.text = score.ToString();
+    }
+
+    public void UpdateLeaderboard(string name)
+    {
+        highScoreTable.GetComponent<HighScoreTable>().AddHighscoreEntry(score, name);
+        highScoreTable.GetComponent<HighScoreTable>().LoadHighScoreTable();
     }
 }

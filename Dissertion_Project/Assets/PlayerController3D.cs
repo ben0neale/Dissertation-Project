@@ -20,6 +20,9 @@ public class PlayerController3D : MonoBehaviour
 
     private float zSpeed;
 
+    bool gameOver = false;
+    [SerializeField] GameObject HighScoreTable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +34,11 @@ public class PlayerController3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -zSpeed);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
+        if (!gameOver)
+        {
+            RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -zSpeed);
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
+        }
     }
 
     void OnMove(InputValue MoveInput)
@@ -59,10 +64,16 @@ public class PlayerController3D : MonoBehaviour
 
     }
 
+    private void GameOver()
+    {
+        gameOver = true;
+        HighScoreTable.SetActive(true);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstical"))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameOver();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -78,7 +89,7 @@ public class PlayerController3D : MonoBehaviour
             if (other.gameObject != objHit)
             {
                 if (stumbling)
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                    GameOver();
                 else
                 {
                     objHit = other.gameObject;
