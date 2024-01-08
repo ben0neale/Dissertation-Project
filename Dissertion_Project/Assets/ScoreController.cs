@@ -9,6 +9,7 @@ public class ScoreController : MonoBehaviour
     GameObject Player;
     [SerializeField] GameObject highScoreTable;
     TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI multiplierText;
     public float UpdateTime;
     private float _updateTime;
     int score = 0;
@@ -29,15 +30,17 @@ public class ScoreController : MonoBehaviour
         {
             if (_updateTime <= 0)
             {
-                score++;
+                score += 1 + Player.GetComponent<PlayerController3D>().multiplier;
                 _updateTime = UpdateTime;
             }
             else
                 _updateTime -= Time.deltaTime;
         }
 
+        multiplierText.text = Player.GetComponent<PlayerController3D>().multiplier.ToString() + "x";
         scoreText.text = score.ToString();
     }
+
 
     public void UpdateLeaderboard(string name)
     {

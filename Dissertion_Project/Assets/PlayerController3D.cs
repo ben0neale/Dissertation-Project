@@ -26,12 +26,18 @@ public class PlayerController3D : MonoBehaviour
     public bool gameOver = false;
     [SerializeField] GameObject HighScoreTable;
 
+    public int multiplier = 0;
+    [SerializeField] float multiplierTime;
+    float _multiplierTime;
+
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponentInChildren<Animator>();
         zSpeed = ZMaxVelocity;
         RB = GetComponent<Rigidbody>();
+
+        _multiplierTime = multiplierTime;
     }
 
     // Update is called once per frame
@@ -39,9 +45,21 @@ public class PlayerController3D : MonoBehaviour
     {
         if (!gameOver)
         {
-            RB.velocity = new Vector3(MoveValue.x * Xspeed, 0, -zSpeed);
+            RB.velocity = new Vector3(MoveValue.x * Xspeed, RB.velocity.y, -zSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
+
+            if (multiplier > 0)
+            { 
+                if (_multiplierTime <= 0)
+                {
+                    multiplier = 0;
+                    _multiplierTime = multiplierTime;
+                }
+                else
+                    _multiplierTime -= Time.deltaTime;
+            }
         }
+
     }
 
     void OnMove(InputValue MoveInput)
@@ -106,6 +124,14 @@ public class PlayerController3D : MonoBehaviour
                     StartCoroutine(Stumble());
                 }
             }
+        }
+        if (other.gameObject.CompareTag("Multiplier"))
+        {
+            if (multiplier == 0)
+                multiplier = 2;
+            else
+                multiplier *= 2;
+            _multiplierTime = multiplierTime;
         }
     }
 }

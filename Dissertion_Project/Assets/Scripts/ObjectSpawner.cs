@@ -12,6 +12,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Platform;
     [SerializeField] GameObject StartPlat;
+    [SerializeField] GameObject Jump;
     GameObject PrevPlat;
 
     public float x1;
@@ -79,6 +80,8 @@ public class ObjectSpawner : MonoBehaviour
         
         //Instantiate chosen object at chosen position
         GameObject obstical = Instantiate(obj, Pos, Quaternion.Euler(0,Random.Range(0,360),0), ObjParent.transform);
+        if (obstical.CompareTag("Multiplier"))
+            obstical.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (!ThreeD)
         {

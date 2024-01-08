@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstical
   - Ground
+  - Multiplier
   layers:
   - Default
   - TransparentFX
