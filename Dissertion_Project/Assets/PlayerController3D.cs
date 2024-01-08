@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController3D : MonoBehaviour
 {
+    [SerializeField] GameObject PlayerRagdoll;
+    [SerializeField] GameObject PlayerModel;
+    [SerializeField] Rigidbody RagdollRB;
     Animator anim;
     Vector3 MoveValue;
     Rigidbody RB;
@@ -20,7 +23,7 @@ public class PlayerController3D : MonoBehaviour
 
     private float zSpeed;
 
-    bool gameOver = false;
+    public bool gameOver = false;
     [SerializeField] GameObject HighScoreTable;
 
     // Start is called before the first frame update
@@ -64,16 +67,23 @@ public class PlayerController3D : MonoBehaviour
 
     }
 
-    private void GameOver()
+    private IEnumerator GameOver()
     {
+        PlayerModel.SetActive(false);
+        PlayerRagdoll.SetActive(true);
+        RB.constraints = RigidbodyConstraints.None;
+        RagdollRB.AddForce(0, 2000, -4000);
         gameOver = true;
+
+        yield return new WaitForSeconds(2.5f);
+
         HighScoreTable.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstical"))
-            GameOver();
+            StartCoroutine(GameOver());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -89,7 +99,7 @@ public class PlayerController3D : MonoBehaviour
             if (other.gameObject != objHit)
             {
                 if (stumbling)
-                    GameOver();
+                    StartCoroutine(GameOver());
                 else
                 {
                     objHit = other.gameObject;

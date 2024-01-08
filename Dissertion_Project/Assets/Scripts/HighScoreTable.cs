@@ -59,7 +59,7 @@ public class HighScoreTable : MonoBehaviour
             {
                 for (int j = i + 1; j < highscores.highscoreEntryList.Count; j++)
                 {
-                    if (highscores.highscoreEntryList[j].time < highscores.highscoreEntryList[i].time)
+                    if (highscores.highscoreEntryList[j].time > highscores.highscoreEntryList[i].time)
                     {
                         //swap
                         HighScoreEntry temp = highscores.highscoreEntryList[i];

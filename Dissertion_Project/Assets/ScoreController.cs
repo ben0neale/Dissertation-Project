@@ -6,6 +6,7 @@ using TMPro;
 
 public class ScoreController : MonoBehaviour
 {
+    GameObject Player;
     [SerializeField] GameObject highScoreTable;
     TextMeshProUGUI scoreText;
     public float UpdateTime;
@@ -15,6 +16,8 @@ public class ScoreController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        score = 0;
         scoreText = GetComponent<TextMeshProUGUI>();
         _updateTime = UpdateTime;
     }
@@ -22,13 +25,16 @@ public class ScoreController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_updateTime <= 0)
+        if (!Player.GetComponent<PlayerController3D>().gameOver)
         {
-            score++;
-            _updateTime = UpdateTime;
+            if (_updateTime <= 0)
+            {
+                score++;
+                _updateTime = UpdateTime;
+            }
+            else
+                _updateTime -= Time.deltaTime;
         }
-        else
-            _updateTime -= Time.deltaTime;
 
         scoreText.text = score.ToString();
     }
