@@ -9,14 +9,17 @@ public class PlayerController3D : MonoBehaviour
     [SerializeField] GameObject PlayerRagdoll;
     [SerializeField] GameObject PlayerModel;
     [SerializeField] Rigidbody RagdollRB;
+    [SerializeField] GameObject Avalanche;
     Animator anim;
     Vector3 MoveValue;
     Rigidbody RB;
+
     public float Xspeed;
     public float XMaxVelocity;
     public float ZMaxVelocity;
     public float rotationSpeed;
     private bool stumbling = false;
+    float avalancheOffset;
 
     private bool firstHit = false;
     private GameObject objHit;
@@ -38,13 +41,19 @@ public class PlayerController3D : MonoBehaviour
         RB = GetComponent<Rigidbody>();
 
         _multiplierTime = multiplierTime;
+        avalancheOffset = transform.position.z - Avalanche.transform.position.z;
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(RB.velocity);
         if (!gameOver)
         {
+            if (transform.position.z - Avalanche.transform.position.z > avalancheOffset && !stumbling)
+                zSpeed += 2;
+            else
+                zSpeed = ZMaxVelocity;
             RB.velocity = new Vector3(MoveValue.x * Xspeed, RB.velocity.y, -zSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
 
@@ -100,7 +109,7 @@ public class PlayerController3D : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstical"))
+        if ((collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Skier")) && !gameOver)
             StartCoroutine(GameOver());
     }
 

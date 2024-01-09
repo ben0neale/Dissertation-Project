@@ -6,10 +6,13 @@ public class CollisionCheck : MonoBehaviour
 {
     GameObject Spawner;
 
+
     // Start is called before the first frame update
     void Start()
     {
         Spawner = GameObject.FindGameObjectWithTag("Spawner");
+
+        transform.localScale = Vector3.one * Random.Range(1, 3);
     }
 
 
@@ -17,8 +20,23 @@ public class CollisionCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstical") || other.gameObject.CompareTag("Multiplier"))
         {
-            Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
-            Destroy(gameObject);
+            //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
+            if (transform.position.z < other.gameObject.transform.position.z)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Multiplier"))
+        {
+            //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
+            if (transform.position.z < collision.gameObject.transform.position.z)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
