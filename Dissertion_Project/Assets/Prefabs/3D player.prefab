@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRagdoll: {fileID: 678538171133920366}
   PlayerModel: {fileID: 1070782392890190141}
-  RagdollRB: {fileID: 0}
+  RagdollRB: {fileID: 944941204048470349}
   Xspeed: 8
   XMaxVelocity: 5
   ZMaxVelocity: 10
@@ -565,6 +565,11 @@ Transform:
 --- !u!1 &678538171133920366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3159192582573580683, guid: 6aab031931c060c4488712210e364987, type: 3}
+  m_PrefabInstance: {fileID: 2503176988033017317}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &944941204048470349 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 3431753024485426344, guid: 6aab031931c060c4488712210e364987, type: 3}
   m_PrefabInstance: {fileID: 2503176988033017317}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3107350619000417464

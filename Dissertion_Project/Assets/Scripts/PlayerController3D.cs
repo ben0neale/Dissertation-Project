@@ -106,7 +106,7 @@ public class PlayerController3D : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Obstical"))
+        if (other.gameObject.CompareTag("Obstical") || other.gameObject.CompareTag("Skier"))
         {
             if (!firstHit)
             {

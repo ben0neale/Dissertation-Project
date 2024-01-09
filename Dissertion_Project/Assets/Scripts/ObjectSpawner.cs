@@ -66,7 +66,7 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    private void ObsticalSpawn()
+    public void ObsticalSpawn()
     {
         //Get random obstical from obstical list
         GameObject obj = Obsticals[Random.Range(0, Obsticals.Count)];

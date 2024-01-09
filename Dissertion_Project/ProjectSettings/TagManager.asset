@@ -7,6 +7,8 @@ TagManager:
   - Obstical
   - Ground
   - Multiplier
+  - Spawner
+  - Skier
   layers:
   - Default
   - TransparentFX
