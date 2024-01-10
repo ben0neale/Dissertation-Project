@@ -185,7 +185,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 96
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &5162096758125609782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,10 +201,12 @@ MonoBehaviour:
   PlayerRagdoll: {fileID: 678538171133920366}
   PlayerModel: {fileID: 1070782392890190141}
   RagdollRB: {fileID: 944941204048470349}
+  Avalanche: {fileID: 0}
   Xspeed: 8
+  XAcceleration: 2
   XMaxVelocity: 5
   ZMaxVelocity: 10
-  rotationSpeed: 0.04
+  rotationSpeed: 5
   gameOver: 0
   HighScoreTable: {fileID: 0}
   multiplier: 0

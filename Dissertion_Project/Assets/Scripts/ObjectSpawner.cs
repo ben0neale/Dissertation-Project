@@ -26,6 +26,9 @@ public class ObjectSpawner : MonoBehaviour
     public float _spawnInterval;
     private float spawnInterval;
 
+    public float _jumpSpawnInterval;
+    private float jumpSpawnInteral;
+
     [SerializeField] float platSpawnDistance;
     private float _platSpawnDistance;
 
@@ -35,6 +38,7 @@ public class ObjectSpawner : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         spawnInterval = _spawnInterval;
         SkierspawnInterval = _SkierspawnInterval;
+        jumpSpawnInteral = _jumpSpawnInterval;
         _platSpawnDistance = Platform.transform.localScale.z / 2;
         PrevPlat = StartPlat;
     }
@@ -59,6 +63,14 @@ public class ObjectSpawner : MonoBehaviour
         else
             SkierspawnInterval -= Time.deltaTime;
 
+        if (jumpSpawnInteral <= 0)
+        {
+            JumpSpawner();
+            jumpSpawnInteral = _jumpSpawnInterval;
+        }
+        else
+            jumpSpawnInteral -= Time.deltaTime;
+
         if (ThreeD && Player.transform.position.z <= -_platSpawnDistance)
         {
             PlatformSpawn();
@@ -72,16 +84,10 @@ public class ObjectSpawner : MonoBehaviour
         GameObject obj = Obsticals[Random.Range(0, Obsticals.Count)];
 
         //Get Random spawn position from provided range
-        Vector3 Pos;
-        if (!ThreeD)
-            Pos = new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), Random.Range(-y1 + Player.transform.position.y, -y2 + Player.transform.position.y), 0);
-        else
-            Pos = new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), .5f, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
+        Vector3 Pos = GetPos(); 
         
         //Instantiate chosen object at chosen position
         GameObject obstical = Instantiate(obj, Pos, Quaternion.Euler(0,Random.Range(0,360),0), ObjParent.transform);
-        if (obstical.CompareTag("Multiplier"))
-            obstical.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         if (!ThreeD)
         {
@@ -96,6 +102,20 @@ public class ObjectSpawner : MonoBehaviour
                 ObsticalSpawn();
             }
         }
+    }
+
+    private void JumpSpawner()
+    {
+        Vector3 pos = GetPos();
+        Instantiate(Jump, pos, Quaternion.identity);
+    }
+
+    private Vector3 GetPos()
+    {
+        if (!ThreeD)
+            return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), Random.Range(-y1 + Player.transform.position.y, -y2 + Player.transform.position.y), 0);
+        else
+            return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), .5f, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
     }
 
     private void SkierSpawn()

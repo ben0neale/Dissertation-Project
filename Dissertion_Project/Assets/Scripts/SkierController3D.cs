@@ -12,6 +12,7 @@ public class SkierController3D : MonoBehaviour
     public float minSpeed, maxSpeed;
     public float Yspeed;
     int direction;
+    bool crash = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,14 @@ public class SkierController3D : MonoBehaviour
             direction = 1;
 
         RB.velocity = new Vector3(Random.Range(minSpeed, maxSpeed) * direction, 0, -Yspeed);
-        transform.LookAt(RB.velocity * 100);
+        transform.LookAt(RB.velocity * 1000);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Player"))
         {
+            crash = true;
             RB.velocity = Vector3.zero;
             RB.constraints = RigidbodyConstraints.None;
             Model.SetActive(false);

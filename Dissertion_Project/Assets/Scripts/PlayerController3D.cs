@@ -15,6 +15,7 @@ public class PlayerController3D : MonoBehaviour
     Rigidbody RB;
 
     public float Xspeed;
+    public float XAcceleration;
     public float XMaxVelocity;
     public float ZMaxVelocity;
     public float rotationSpeed;
@@ -25,6 +26,7 @@ public class PlayerController3D : MonoBehaviour
     private GameObject objHit;
 
     private float zSpeed;
+    private float xValue = 0;
 
     public bool gameOver = false;
     [SerializeField] GameObject HighScoreTable;
@@ -47,15 +49,16 @@ public class PlayerController3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(RB.velocity);
         if (!gameOver)
         {
             if (transform.position.z - Avalanche.transform.position.z > avalancheOffset && !stumbling)
-                zSpeed += 2;
-            else
+                zSpeed += 1;
+            else if(!stumbling)
                 zSpeed = ZMaxVelocity;
-            RB.velocity = new Vector3(MoveValue.x * Xspeed, RB.velocity.y, -zSpeed);
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, MoveValue.x * -45, 0), rotationSpeed);
+
+            xValue = Mathf.Lerp(xValue, MoveValue.x, XAcceleration * Time.deltaTime);
+            RB.velocity = new Vector3(xValue * Xspeed, RB.velocity.y, -zSpeed);
+            transform.localRotation = Quaternion.LookRotation(new Vector3(-xValue, 0, 1));
 
             if (multiplier > 0)
             { 
@@ -67,8 +70,9 @@ public class PlayerController3D : MonoBehaviour
                 else
                     _multiplierTime -= Time.deltaTime;
             }
-        }
 
+
+        }
     }
 
     void OnMove(InputValue MoveInput)
