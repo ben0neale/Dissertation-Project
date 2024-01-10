@@ -28,8 +28,14 @@ public class PlayerController3D : MonoBehaviour
     private float zSpeed;
     private float xValue = 0;
 
+    float xrotation = 0;
+    public float MaxRotation;
+
     public bool gameOver = false;
     [SerializeField] GameObject HighScoreTable;
+
+    bool useGravity = true;
+    public float GravScale = -2f;
 
     public int multiplier = 0;
     [SerializeField] float multiplierTime;
@@ -44,10 +50,12 @@ public class PlayerController3D : MonoBehaviour
 
         _multiplierTime = multiplierTime;
         avalancheOffset = transform.position.z - Avalanche.transform.position.z;
+
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!gameOver)
         {
@@ -57,8 +65,11 @@ public class PlayerController3D : MonoBehaviour
                 zSpeed = ZMaxVelocity;
 
             xValue = Mathf.Lerp(xValue, MoveValue.x, XAcceleration * Time.deltaTime);
-            RB.velocity = new Vector3(xValue * Xspeed, RB.velocity.y, -zSpeed);
-            transform.localRotation = Quaternion.LookRotation(new Vector3(-xValue, 0, 1));
+            xrotation = -xValue;
+            RB.velocity = new Vector3(-xrotation * Xspeed, GravScale, -zSpeed);
+
+            //transform.LookAt(transform.position + -RB.velocity - new Vector3(0,1,0));
+            transform.rotation = Quaternion.Euler(transform.rotation.x, xrotation * 45, 0);
 
             if (multiplier > 0)
             { 

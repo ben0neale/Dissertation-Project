@@ -10479,14 +10479,14 @@ MonoBehaviour:
   Player: {fileID: 453065741}
   Platform: {fileID: 9097700462587895130, guid: 95f3a8ab3c58c874c8ea0648cd6b3901, type: 3}
   StartPlat: {fileID: 1848109200}
-  Jump: {fileID: 9028625141870174431, guid: 54e7f98f53d09a34c801e53e852085f9, type: 3}
+  Jump: {fileID: 4394665053151269060, guid: 77a56ad8b71f3384380fd642900d8f19, type: 3}
   x1: -20
   x2: 20
   y1: 25
   y2: 35
   _SkierspawnInterval: 3
-  _spawnInterval: 0.25
-  _jumpSpawnInterval: 3
+  _spawnInterval: 1
+  _jumpSpawnInterval: 1
   platSpawnDistance: 0
 --- !u!1 &1848109200 stripped
 GameObject:
@@ -11155,31 +11155,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.53
+      value: 2.68
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98021543
+      value: 0.99969465
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.19793381
+      value: 0.02471139
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 22.832
+      value: 2.832
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -11187,6 +11187,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5162096758125609769, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
+      propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609771, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
@@ -11197,6 +11201,10 @@ PrefabInstance:
       propertyPath: Avalanche
       value: 
       objectReference: {fileID: 480305892}
+    - target: {fileID: 5162096758125609782, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
+      propertyPath: MaxRotation
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609782, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: HighScoreTable
       value: 

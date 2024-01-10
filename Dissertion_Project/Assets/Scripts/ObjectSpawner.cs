@@ -107,6 +107,7 @@ public class ObjectSpawner : MonoBehaviour
     private void JumpSpawner()
     {
         Vector3 pos = GetPos();
+        print(pos);
         Instantiate(Jump, pos, Quaternion.identity);
     }
 
@@ -115,7 +116,7 @@ public class ObjectSpawner : MonoBehaviour
         if (!ThreeD)
             return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), Random.Range(-y1 + Player.transform.position.y, -y2 + Player.transform.position.y), 0);
         else
-            return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), .5f, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
+            return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), 0, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
     }
 
     private void SkierSpawn()
@@ -134,6 +135,6 @@ public class ObjectSpawner : MonoBehaviour
 
     private void PlatformSpawn()
     {
-        PrevPlat = Instantiate(Platform, new Vector3(Player.transform.position.x, 0, PrevPlat.transform.position.z - Platform.transform.localScale.z), Quaternion.identity);
+        PrevPlat = Instantiate(Platform, new Vector3(Player.transform.position.x, .4f, PrevPlat.transform.position.z - Platform.transform.localScale.z), Quaternion.identity);
     }
 }

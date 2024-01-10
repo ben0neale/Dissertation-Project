@@ -18,7 +18,7 @@ public class CollisionCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Obstical") || other.gameObject.CompareTag("Multiplier"))
+        if (other.gameObject.CompareTag("Obstical"))
         {
             //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
             if (transform.position.z < other.gameObject.transform.position.z)
@@ -30,7 +30,7 @@ public class CollisionCheck : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Multiplier"))
+        if (collision.gameObject.CompareTag("Obstical"))
         {
             //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
             if (transform.position.z < collision.gameObject.transform.position.z)

@@ -9,6 +9,7 @@ TagManager:
   - Multiplier
   - Spawner
   - Skier
+  - Jump
   layers:
   - Default
   - TransparentFX
