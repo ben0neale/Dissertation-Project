@@ -66,7 +66,7 @@ public class PlayerController3D : MonoBehaviour
 
             xValue = Mathf.Lerp(xValue, MoveValue.x, XAcceleration * Time.deltaTime);
             xrotation = -xValue;
-            RB.velocity = new Vector3(-xrotation * Xspeed, GravScale, -zSpeed);
+            RB.velocity = new Vector3(-xrotation * Xspeed, RB.velocity.y, -zSpeed);
 
             //transform.LookAt(transform.position + -RB.velocity - new Vector3(0,1,0));
             transform.rotation = Quaternion.Euler(transform.rotation.x, xrotation * 45, 0);

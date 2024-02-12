@@ -5155,6 +5155,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: HighScoreTable
       objectReference: {fileID: 0}
+    - target: {fileID: 6943267471810463304, guid: 32d888df556d8cf43997e0e5992c1f09, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7317140205687749019, guid: 32d888df556d8cf43997e0e5992c1f09, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8963107990244040928, guid: 32d888df556d8cf43997e0e5992c1f09, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166446283917650862, guid: 32d888df556d8cf43997e0e5992c1f09, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32d888df556d8cf43997e0e5992c1f09, type: 3}
 --- !u!224 &911602453 stripped
@@ -10177,7 +10193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.541, y: 1.548, z: 12.312}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 25.6, y: 11.2}
+  m_AnchoredPosition: {x: 25.6, y: 11.200012}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1623653346
@@ -11191,7 +11207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609769, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_UseGravity
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609771, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_Name
