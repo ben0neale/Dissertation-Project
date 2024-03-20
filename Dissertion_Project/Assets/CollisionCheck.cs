@@ -12,9 +12,14 @@ public class CollisionCheck : MonoBehaviour
     {
         Spawner = GameObject.FindGameObjectWithTag("Spawner");
 
-        transform.localScale = Vector3.one * Random.Range(1, 3);
+        transform.localScale = Vector3.one * Random.Range(.3f, 1);
     }
 
+    private void Update()
+    {
+        if (transform.position.y < -3)
+            Destroy(gameObject);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

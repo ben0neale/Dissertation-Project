@@ -10,7 +10,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] GameObject Skier;
     [SerializeField] GameObject ObjParent;
     [SerializeField] GameObject Player;
-    [SerializeField] GameObject Platform;
+    [SerializeField] List<GameObject> Platform;
     [SerializeField] GameObject StartPlat;
     [SerializeField] GameObject Jump;
     GameObject PrevPlat;
@@ -63,13 +63,13 @@ public class ObjectSpawner : MonoBehaviour
         else
             SkierspawnInterval -= Time.deltaTime;
 
-        if (jumpSpawnInteral <= 0)
+/*        if (jumpSpawnInteral <= 0)
         {
             JumpSpawner();
             jumpSpawnInteral = _jumpSpawnInterval;
         }
         else
-            jumpSpawnInteral -= Time.deltaTime;
+            jumpSpawnInteral -= Time.deltaTime;*/
 
         if (ThreeD && Player.transform.position.z <= -_platSpawnDistance)
         {
@@ -116,25 +116,25 @@ public class ObjectSpawner : MonoBehaviour
         if (!ThreeD)
             return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), Random.Range(-y1 + Player.transform.position.y, -y2 + Player.transform.position.y), 0);
         else
-            return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), 0, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
+            return new Vector3(Random.Range(-8, 8), 0, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
     }
 
     private void SkierSpawn()
     {
         Vector3 Pos;
-        List<float> spawnSide = new List<float> { x1, x2 };
+        List<float> spawnSide = new List<float> { -8, 8 };
         float direction = spawnSide[Random.Range(0, 2)]; 
         
         if(!ThreeD)
             Pos = new Vector3(direction + Player.transform.position.x, Random.Range(Player.transform.position.y, Player.transform.position.y - y1), 0);
         else
-            Pos = new Vector3(direction + Player.transform.position.x, 1.5f, Random.Range(Player.transform.position.z, Player.transform.position.z - y1));
+            Pos = new Vector3(direction + Player.transform.position.x, 1.5f, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
 
         Instantiate(Skier, Pos, Quaternion.identity, ObjParent.transform);
     }
 
     private void PlatformSpawn()
     {
-        PrevPlat = Instantiate(Platform, new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
+        PrevPlat = Instantiate(Platform[Random.Range(0,Platform.Count)], new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
     }
 }

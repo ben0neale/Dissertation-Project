@@ -25,21 +25,36 @@ public class SkierController3D : MonoBehaviour
         else
             direction = 1;
 
-        RB.velocity = new Vector3(Random.Range(minSpeed, maxSpeed) * direction, 0, -Yspeed);
+        RB.velocity = new Vector3(Random.Range(minSpeed, maxSpeed) * direction, RB.velocity.y, Random.Range(-Yspeed - 5, -Yspeed + 5));
         transform.LookAt(RB.velocity * 1000);
+    }
+
+    private void FixedUpdate()
+    {
+        if (!crash)
+        {
+            RB.velocity = new Vector3(Random.Range(minSpeed, maxSpeed) * direction, RB.velocity.y, Random.Range(-Yspeed - 5, -Yspeed + 5));
+
+            if (transform.position.y < -3)
+                death();
+        }
+    }
+
+    void death()
+    {
+        crash = true;
+        RB.velocity = Vector3.zero;
+        RB.constraints = RigidbodyConstraints.None;
+        Model.SetActive(false);
+        Ragdol.SetActive(true);
+        RagdolRB.AddForce(0, 300, 300);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Player"))
         {
-            crash = true;
-            RB.velocity = Vector3.zero;
-            RB.constraints = RigidbodyConstraints.None;
-            Model.SetActive(false);
-            Ragdol.SetActive(true);
-            RagdolRB.AddForce(0, 300, 300);
+            death();
         }
-            
     }
 }

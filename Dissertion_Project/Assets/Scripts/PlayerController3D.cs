@@ -82,7 +82,10 @@ public class PlayerController3D : MonoBehaviour
                     _multiplierTime -= Time.deltaTime;
             }
 
-
+            if(transform.position.y < -3)
+            {
+                StartCoroutine(GameOver());
+            }
         }
     }
 
