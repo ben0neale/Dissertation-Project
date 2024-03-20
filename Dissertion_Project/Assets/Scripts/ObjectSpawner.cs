@@ -39,7 +39,7 @@ public class ObjectSpawner : MonoBehaviour
         spawnInterval = _spawnInterval;
         SkierspawnInterval = _SkierspawnInterval;
         jumpSpawnInteral = _jumpSpawnInterval;
-        _platSpawnDistance = Platform.transform.localScale.z / 2;
+        _platSpawnDistance = 0;
         PrevPlat = StartPlat;
     }
 
@@ -74,7 +74,7 @@ public class ObjectSpawner : MonoBehaviour
         if (ThreeD && Player.transform.position.z <= -_platSpawnDistance)
         {
             PlatformSpawn();
-            _platSpawnDistance += Platform.transform.localScale.z; 
+            _platSpawnDistance += 80; 
         }
     }
 
@@ -135,6 +135,6 @@ public class ObjectSpawner : MonoBehaviour
 
     private void PlatformSpawn()
     {
-        PrevPlat = Instantiate(Platform, new Vector3(Player.transform.position.x, .4f, PrevPlat.transform.position.z - Platform.transform.localScale.z), Quaternion.identity);
+        PrevPlat = Instantiate(Platform, new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
     }
 }
