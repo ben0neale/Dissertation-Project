@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController3D : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class PlayerController3D : MonoBehaviour
     [SerializeField] GameObject PlayerModel;
     [SerializeField] Rigidbody RagdollRB;
     [SerializeField] GameObject Avalanche;
+    [SerializeField] TextMeshProUGUI CoinText;
     Animator anim;
     Vector3 MoveValue;
     Rigidbody RB;
@@ -18,6 +21,7 @@ public class PlayerController3D : MonoBehaviour
     public float XAcceleration;
     public float XMaxVelocity;
     public float ZMaxVelocity;
+    public float ZpeedIncreaseRate;
     public float rotationSpeed;
     private bool stumbling = false;
     float avalancheOffset;
@@ -41,6 +45,11 @@ public class PlayerController3D : MonoBehaviour
     [SerializeField] float multiplierTime;
     float _multiplierTime;
 
+    private float speedtime = 3f;
+    public float _speedtime = 3f;
+
+    int CoinNum = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +60,7 @@ public class PlayerController3D : MonoBehaviour
         _multiplierTime = multiplierTime;
         avalancheOffset = transform.position.z - Avalanche.transform.position.z;
 
-
+        CoinText.text = CoinNum.ToString();
     }
 
     // Update is called once per frame
@@ -85,6 +94,14 @@ public class PlayerController3D : MonoBehaviour
             if(transform.position.y < -3)
             {
                 StartCoroutine(GameOver());
+            }
+
+            if (speedtime >= 0)
+                speedtime -= Time.deltaTime;
+            else
+            {
+                ZMaxVelocity += ZpeedIncreaseRate;
+                speedtime = _speedtime;
             }
         }
     }
@@ -129,6 +146,13 @@ public class PlayerController3D : MonoBehaviour
     {
         if ((collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Skier")) && !gameOver)
             StartCoroutine(GameOver());
+
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            Destroy(collision.gameObject);
+            CoinNum++;
+            CoinText.text = CoinNum.ToString();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -160,5 +184,6 @@ public class PlayerController3D : MonoBehaviour
                 multiplier *= 2;
             _multiplierTime = multiplierTime;
         }
+
     }
 }

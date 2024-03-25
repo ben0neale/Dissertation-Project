@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollisionCheck : MonoBehaviour
 {
     GameObject Spawner;
+    public bool randomScale = true;
 
 
     // Start is called before the first frame update
@@ -12,7 +13,8 @@ public class CollisionCheck : MonoBehaviour
     {
         Spawner = GameObject.FindGameObjectWithTag("Spawner");
 
-        transform.localScale = Vector3.one * Random.Range(.3f, 1);
+        if(randomScale)
+            transform.localScale = Vector3.one * Random.Range(.5f, 1.5f);
     }
 
     private void Update()

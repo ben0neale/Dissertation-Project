@@ -26,6 +26,8 @@ public class ObjectSpawner : MonoBehaviour
     public float _spawnInterval;
     private float spawnInterval;
 
+    public float difficultyCurve;
+
     public float _jumpSpawnInterval;
     private float jumpSpawnInteral;
 
@@ -50,6 +52,8 @@ public class ObjectSpawner : MonoBehaviour
         if (spawnInterval <= 0)
         {
             ObsticalSpawn();
+            if(_spawnInterval > 0.2)
+                _spawnInterval -= difficultyCurve;
             spawnInterval = _spawnInterval;
         }
         else
@@ -116,7 +120,7 @@ public class ObjectSpawner : MonoBehaviour
         if (!ThreeD)
             return new Vector3(Random.Range(x1 + Player.transform.position.x, x2 + Player.transform.position.x), Random.Range(-y1 + Player.transform.position.y, -y2 + Player.transform.position.y), 0);
         else
-            return new Vector3(Random.Range(-8, 8), 0, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
+            return new Vector3(Random.Range(x1, x2), 0, Random.Range(-y1 + Player.transform.position.z, -y2 + Player.transform.position.z));
     }
 
     private void SkierSpawn()
