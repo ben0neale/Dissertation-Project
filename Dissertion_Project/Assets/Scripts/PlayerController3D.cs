@@ -153,6 +153,20 @@ public class PlayerController3D : MonoBehaviour
             CoinNum++;
             CoinText.text = CoinNum.ToString();
         }
+
+        if (collision.gameObject.CompareTag("Multiplier"))
+        {
+            Destroy(collision.gameObject); 
+            if (multiplier == 0)
+                multiplier = 2;
+            else
+                multiplier *= 2;
+            _multiplierTime = multiplierTime;
+        }
+        if(collision.gameObject.CompareTag("Boalder"))
+        {
+            StartCoroutine(GameOver());
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -176,14 +190,5 @@ public class PlayerController3D : MonoBehaviour
                 }
             }
         }
-        if (other.gameObject.CompareTag("Multiplier"))
-        {
-            if (multiplier == 0)
-                multiplier = 2;
-            else
-                multiplier *= 2;
-            _multiplierTime = multiplierTime;
-        }
-
     }
 }
