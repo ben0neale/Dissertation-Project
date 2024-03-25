@@ -11,6 +11,8 @@ TagManager:
   - Skier
   - Jump
   - Coin
+  - Shield
+  - Boalder
   layers:
   - Default
   - TransparentFX

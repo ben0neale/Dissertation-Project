@@ -10724,8 +10724,10 @@ MonoBehaviour:
   - {fileID: 7119205331311264307, guid: da74173bb0e690449aa7053049911f86, type: 3}
   - {fileID: 9206584558556122982, guid: e3f36fd70cd120e41b8b397a93d7a36d, type: 3}
   - {fileID: 6957084580094173896, guid: f532f4a41b2353d4ba3a752061c9fd0c, type: 3}
+  - {fileID: 6535473066917710327, guid: 7aa4338bb208c60498213d0fb72f731e, type: 3}
   StartPlat: {fileID: 432440006}
   Jump: {fileID: 4394665053151269060, guid: 77a56ad8b71f3384380fd642900d8f19, type: 3}
+  Boalder: {fileID: 721961225993138779, guid: a1b0a2838b3c7504489d534e9c619720, type: 3}
   x1: -10
   x2: 10
   y1: 60
@@ -10735,6 +10737,7 @@ MonoBehaviour:
   difficultyCurve: 0.01
   _jumpSpawnInterval: 1
   platSpawnDistance: 0
+  _boalderSpawnInterval: 1
 --- !u!114 &1666563193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10752,6 +10755,9 @@ MonoBehaviour:
   - {fileID: 6023518391734959756, guid: 27fa305c65d8a504387e2bead32c92ab, type: 3}
   - {fileID: 5599656325957763769, guid: f457a66b99175b64f8606a262693c5f0, type: 3}
   - {fileID: 703822883316887609, guid: 666ebbbf47e059b40a15b674d718c4b3, type: 3}
+  PowerUps:
+  - {fileID: 1623789865431141272, guid: f283f8910a3badd45986179fb38b4217, type: 3}
+  - {fileID: 6437475865292343591, guid: 5860ede11b1644449a7ffcb9c6eab45d, type: 3}
   _SpawnTime: 2
 --- !u!1 &1813996645
 GameObject:

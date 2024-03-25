@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class ObjectSpawner : MonoBehaviour
@@ -13,6 +14,7 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] List<GameObject> Platform;
     [SerializeField] GameObject StartPlat;
     [SerializeField] GameObject Jump;
+    [SerializeField] GameObject Boalder;
     GameObject PrevPlat;
 
     public float x1;
@@ -34,6 +36,12 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] float platSpawnDistance;
     private float _platSpawnDistance;
 
+    private bool boalderState = false;
+    int boalderPlatNum = 0;
+
+    public float _boalderSpawnInterval;
+    private float boalderSpawnInterval;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +51,14 @@ public class ObjectSpawner : MonoBehaviour
         jumpSpawnInteral = _jumpSpawnInterval;
         _platSpawnDistance = 0;
         PrevPlat = StartPlat;
+        boalderSpawnInterval = _boalderSpawnInterval;
     }
 
     // Update is called once per frame
     void Update()
     {
         //At given interval spawn an obstical
-        if (spawnInterval <= 0)
+        if (spawnInterval <= 0 && !boalderState)
         {
             ObsticalSpawn();
             if(_spawnInterval > 0.2)
@@ -59,13 +68,13 @@ public class ObjectSpawner : MonoBehaviour
         else
             spawnInterval -= Time.deltaTime;
 
-        if (SkierspawnInterval <= 0)
+/*        if (SkierspawnInterval <= 0)
         {
             SkierSpawn();
             SkierspawnInterval = _SkierspawnInterval;
         }
         else
-            SkierspawnInterval -= Time.deltaTime;
+            SkierspawnInterval -= Time.deltaTime;*/
 
 /*        if (jumpSpawnInteral <= 0)
         {
@@ -80,6 +89,28 @@ public class ObjectSpawner : MonoBehaviour
             PlatformSpawn();
             _platSpawnDistance += 80; 
         }
+
+        if(boalderPlatNum == 3)
+        {
+            boalderState = false;
+            boalderPlatNum = 0;
+        }
+
+        if(boalderState)
+        {
+            if (boalderSpawnInterval > 0)
+                boalderSpawnInterval -= Time.deltaTime;
+            else
+            {
+                boalderSpawnInterval = _boalderSpawnInterval;
+                SpawnBoalder();
+            }
+        }
+    }
+
+    void SpawnBoalder()
+    {
+        Instantiate(Boalder, new Vector3(Random.Range(x1, x2), 1f, Player.transform.position.z + 20), Quaternion.identity);
     }
 
     public void ObsticalSpawn()
@@ -139,6 +170,19 @@ public class ObjectSpawner : MonoBehaviour
 
     private void PlatformSpawn()
     {
-        PrevPlat = Instantiate(Platform[Random.Range(0,Platform.Count)], new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
+        GameObject plat;
+        if (!boalderState)
+        {
+            plat = Platform[Random.Range(0, Platform.Count)];
+            if (plat == Platform[3])
+                boalderState = true;
+        }
+        else
+        {
+            plat = Platform[3];
+            boalderPlatNum++;
+        }
+        PrevPlat = Instantiate(plat, new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
     }
+
 }
