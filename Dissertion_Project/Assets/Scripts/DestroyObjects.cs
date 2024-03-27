@@ -23,7 +23,6 @@ public class DestroyObjects : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.gameObject.CompareTag("Ground"))
-            Destroy(other.gameObject);
+        Destroy(other.gameObject);
     }
 }

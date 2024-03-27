@@ -12,6 +12,7 @@ public class PlayerController3D : MonoBehaviour
     [SerializeField] GameObject PlayerModel;
     [SerializeField] Rigidbody RagdollRB;
     [SerializeField] GameObject Avalanche;
+    [SerializeField] GameObject Shield;
     [SerializeField] TextMeshProUGUI CoinText;
     Animator anim;
     Vector3 MoveValue;
@@ -162,6 +163,12 @@ public class PlayerController3D : MonoBehaviour
             else
                 multiplier *= 2;
             _multiplierTime = multiplierTime;
+        }
+        if(collision.gameObject.CompareTag("Shield"))
+        {
+            Destroy(collision.gameObject);
+            Shield.SetActive(false);
+            Shield.SetActive(true);
         }
         if(collision.gameObject.CompareTag("Boalder"))
         {

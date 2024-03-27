@@ -30,6 +30,6 @@ public class CoinSpawner : MonoBehaviour
     void SpawnCoin()
     {
         Instantiate(Coins[Random.Range(0, Coins.Count)], new Vector3(Random.Range(GetComponent<ObjectSpawner>().x1, GetComponent<ObjectSpawner>().x2), .5f, Player.transform.position.z - GetComponent<ObjectSpawner>().y1), Quaternion.identity);
-        Instantiate(PowerUps[Random.Range(0, Coins.Count)], new Vector3(Random.Range(GetComponent<ObjectSpawner>().x1, GetComponent<ObjectSpawner>().x2), .5f, Player.transform.position.z - GetComponent<ObjectSpawner>().y1), Quaternion.identity);
+        Instantiate(PowerUps[Random.Range(0, PowerUps.Count)], new Vector3(Random.Range(GetComponent<ObjectSpawner>().x1, GetComponent<ObjectSpawner>().x2), .5f, Player.transform.position.z - GetComponent<ObjectSpawner>().y1), Quaternion.identity);
     }
 }
