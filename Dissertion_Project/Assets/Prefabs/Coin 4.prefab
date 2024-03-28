@@ -50,6 +50,7 @@ GameObject:
   - component: {fileID: 8817956406650897025}
   - component: {fileID: 1641328694527571519}
   - component: {fileID: 171132332874113171}
+  - component: {fileID: 1206547860524623210}
   m_Layer: 0
   m_Name: Sphere (3)
   m_TagString: Coin
@@ -137,7 +138,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -183,6 +184,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomScale: 0
+--- !u!135 &1206547860524623210
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822626045366242155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4289602661189937303
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,6 +219,7 @@ GameObject:
   - component: {fileID: 7993403961885857414}
   - component: {fileID: 3662363189158066459}
   - component: {fileID: 4062541977858722613}
+  - component: {fileID: 84336874172610529}
   m_Layer: 0
   m_Name: Sphere (4)
   m_TagString: Coin
@@ -284,7 +307,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -330,6 +353,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomScale: 0
+--- !u!135 &84336874172610529
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289602661189937303}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8151852605021512857
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,6 +388,7 @@ GameObject:
   - component: {fileID: 8952628323230114436}
   - component: {fileID: 2391349361358301797}
   - component: {fileID: 5764050748526312336}
+  - component: {fileID: 8351633156901931302}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Coin
@@ -431,7 +476,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -477,6 +522,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomScale: 0
+--- !u!135 &8351633156901931302
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8151852605021512857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8576762943537971736
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +557,7 @@ GameObject:
   - component: {fileID: 1990051261315102280}
   - component: {fileID: 962473853400612413}
   - component: {fileID: 3915623050874372917}
+  - component: {fileID: 1413209245849810514}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Coin
@@ -578,7 +645,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -624,6 +691,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomScale: 0
+--- !u!135 &1413209245849810514
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8576762943537971736}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8750512482880919718
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +726,7 @@ GameObject:
   - component: {fileID: 2768980316943419674}
   - component: {fileID: 3870632563402483671}
   - component: {fileID: 8805425005552166201}
+  - component: {fileID: 2695883554281093466}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Coin
@@ -725,7 +814,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -771,3 +860,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomScale: 0
+--- !u!135 &2695883554281093466
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8750512482880919718}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

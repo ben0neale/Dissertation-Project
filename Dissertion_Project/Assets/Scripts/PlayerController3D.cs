@@ -148,28 +148,7 @@ public class PlayerController3D : MonoBehaviour
         if ((collision.gameObject.CompareTag("Obstical") || collision.gameObject.CompareTag("Skier")) && !gameOver)
             StartCoroutine(GameOver());
 
-        if (collision.gameObject.CompareTag("Coin"))
-        {
-            Destroy(collision.gameObject);
-            CoinNum++;
-            CoinText.text = CoinNum.ToString();
-        }
 
-        if (collision.gameObject.CompareTag("Multiplier"))
-        {
-            Destroy(collision.gameObject); 
-            if (multiplier == 0)
-                multiplier = 2;
-            else
-                multiplier *= 2;
-            _multiplierTime = multiplierTime;
-        }
-        if(collision.gameObject.CompareTag("Shield"))
-        {
-            Destroy(collision.gameObject);
-            Shield.SetActive(false);
-            Shield.SetActive(true);
-        }
         if(collision.gameObject.CompareTag("Boalder"))
         {
             StartCoroutine(GameOver());
@@ -196,6 +175,29 @@ public class PlayerController3D : MonoBehaviour
                     StartCoroutine(Stumble());
                 }
             }
+        }
+
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            CoinNum++;
+            CoinText.text = CoinNum.ToString();
+        }
+
+        if (other.gameObject.CompareTag("Multiplier"))
+        {
+            Destroy(other.gameObject);
+            if (multiplier == 0)
+                multiplier = 2;
+            else
+                multiplier *= 2;
+            _multiplierTime = multiplierTime;
+        }
+        if (other.gameObject.CompareTag("Shield"))
+        {
+            Destroy(other.gameObject);
+            Shield.SetActive(false);
+            Shield.SetActive(true);
         }
     }
 }
