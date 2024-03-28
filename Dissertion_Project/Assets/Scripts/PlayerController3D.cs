@@ -19,11 +19,9 @@ public class PlayerController3D : MonoBehaviour
     Rigidbody RB;
 
     public float Xspeed;
-    public float XAcceleration;
-    public float XMaxVelocity;
+    public float XAccelerationRotation;
     public float ZMaxVelocity;
     public float ZpeedIncreaseRate;
-    public float rotationSpeed;
     private bool stumbling = false;
     float avalancheOffset;
 
@@ -34,13 +32,11 @@ public class PlayerController3D : MonoBehaviour
     private float xValue = 0;
 
     float xrotation = 0;
-    public float MaxRotation;
 
     public bool gameOver = false;
     [SerializeField] GameObject HighScoreTable;
 
     bool useGravity = true;
-    public float GravScale = -2f;
 
     public int multiplier = 0;
     [SerializeField] float multiplierTime;
@@ -74,9 +70,9 @@ public class PlayerController3D : MonoBehaviour
             else if(!stumbling)
                 zSpeed = ZMaxVelocity;
 
-            xValue = Mathf.Lerp(xValue, MoveValue.x, XAcceleration * Time.deltaTime);
+            xValue = Mathf.Lerp(xValue, MoveValue.x, XAccelerationRotation * Time.deltaTime);
             xrotation = -xValue;
-            RB.velocity = new Vector3(-xrotation * Xspeed, RB.velocity.y, -zSpeed);
+            RB.velocity = new Vector3(-xrotation * Xspeed, RB.velocity.y, -zSpeed) * Time.deltaTime;
 
             //transform.LookAt(transform.position + -RB.velocity - new Vector3(0,1,0));
             transform.rotation = Quaternion.Euler(transform.rotation.x, xrotation * 45, 0);

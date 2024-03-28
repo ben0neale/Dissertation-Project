@@ -90,7 +90,7 @@ public class ObjectSpawner : MonoBehaviour
             _platSpawnDistance += 80; 
         }
 
-        if(boalderPlatNum == 3)
+        if(boalderPlatNum == 1)
         {
             boalderState = false;
             boalderPlatNum = 0;

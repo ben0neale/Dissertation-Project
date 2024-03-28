@@ -16,6 +16,6 @@ public class CamMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RB.velocity = new Vector3(0, 0, -Player.GetComponent<PlayerController3D>().ZMaxVelocity);
+        RB.velocity = new Vector3(0, 0, -Player.GetComponent<PlayerController3D>().ZMaxVelocity * Time.deltaTime);
     }
 }
