@@ -10737,7 +10737,8 @@ MonoBehaviour:
   difficultyCurve: 0.01
   _jumpSpawnInterval: 1
   platSpawnDistance: 0
-  _boalderSpawnInterval: 1
+  _boalderSpawnInterval: 1.5
+  _restTime: 5
 --- !u!114 &1666563193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11502,6 +11503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 751751200381643845, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
+      propertyPath: _shieldTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11554,6 +11559,10 @@ PrefabInstance:
       propertyPath: Avalanche
       value: 
       objectReference: {fileID: 480305892}
+    - target: {fileID: 5162096758125609782, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
+      propertyPath: ZMaxVelocity
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609782, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: HighScoreTable
       value: 

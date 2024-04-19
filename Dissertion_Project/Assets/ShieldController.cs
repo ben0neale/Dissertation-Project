@@ -26,7 +26,12 @@ public class ShieldController : MonoBehaviour
                 shieldTime -= Time.deltaTime;
         }
         else
-            shieldTime = _shieldTime;
+            ResetTime();
+    }
+
+    public void ResetTime()
+    {
+        
     }
 
     private void OnTriggerEnter(Collider other)

@@ -192,8 +192,10 @@ public class PlayerController3D : MonoBehaviour
         if (other.gameObject.CompareTag("Shield"))
         {
             Destroy(other.gameObject);
-            Shield.SetActive(false);
-            Shield.SetActive(true);
+            if (Shield.activeSelf)
+                Shield.GetComponent<ShieldController>().ResetTime();
+            else
+                Shield.SetActive(true);
         }
     }
 }

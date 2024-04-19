@@ -36,11 +36,22 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] float platSpawnDistance;
     private float _platSpawnDistance;
 
-    private bool boalderState = false;
+    enum State
+    {
+        obstical,
+        boalder,
+        rest
+    }
+
+    State state = State.obstical;
+
     int boalderPlatNum = 0;
 
     public float _boalderSpawnInterval;
     private float boalderSpawnInterval;
+
+    public float _restTime;
+    float RestTime;
 
     // Start is called before the first frame update
     void Start()
@@ -52,51 +63,26 @@ public class ObjectSpawner : MonoBehaviour
         _platSpawnDistance = 0;
         PrevPlat = StartPlat;
         boalderSpawnInterval = _boalderSpawnInterval;
+        state = State.obstical;
+        RestTime = _restTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //At given interval spawn an obstical
-        if (spawnInterval <= 0 && !boalderState)
+        if(state == State.obstical)
         {
-            ObsticalSpawn();
-            if(_spawnInterval > 0.2)
-                _spawnInterval -= difficultyCurve;
-            spawnInterval = _spawnInterval;
+            if (spawnInterval <= 0)
+            {
+                ObsticalSpawn();
+                if (_spawnInterval > 0.5)
+                    _spawnInterval -= difficultyCurve;
+                spawnInterval = Random.Range(_spawnInterval - .5f, _spawnInterval +.5f);
+            }
+            else
+                spawnInterval -= Time.deltaTime;
         }
-        else
-            spawnInterval -= Time.deltaTime;
-
-/*        if (SkierspawnInterval <= 0)
-        {
-            SkierSpawn();
-            SkierspawnInterval = _SkierspawnInterval;
-        }
-        else
-            SkierspawnInterval -= Time.deltaTime;*/
-
-/*        if (jumpSpawnInteral <= 0)
-        {
-            JumpSpawner();
-            jumpSpawnInteral = _jumpSpawnInterval;
-        }
-        else
-            jumpSpawnInteral -= Time.deltaTime;*/
-
-        if (ThreeD && Player.transform.position.z <= -_platSpawnDistance)
-        {
-            PlatformSpawn();
-            _platSpawnDistance += 80; 
-        }
-
-        if(boalderPlatNum == 1)
-        {
-            boalderState = false;
-            boalderPlatNum = 0;
-        }
-
-        if(boalderState)
+        else if (state == State.boalder)
         {
             if (boalderSpawnInterval > 0)
                 boalderSpawnInterval -= Time.deltaTime;
@@ -105,12 +91,48 @@ public class ObjectSpawner : MonoBehaviour
                 boalderSpawnInterval = _boalderSpawnInterval;
                 SpawnBoalder();
             }
+
+            if (boalderPlatNum == 1)
+            {
+                state = State.rest;
+                boalderPlatNum = 0;
+            }
         }
+        else if (state == State.rest)
+        {
+            if (RestTime <= 0)
+            {
+                state = State.obstical;
+                RestTime = _restTime;
+            }
+            else
+                RestTime -= Time.deltaTime;
+        }
+
+        if (ThreeD && Player.transform.position.z <= -_platSpawnDistance)
+        {
+            PlatformSpawn();
+            _platSpawnDistance += 80;
+        }
+
+
+
+        //At given interval spawn an obstical
+
+
+        /*        if (SkierspawnInterval <= 0)
+                {
+                    SkierSpawn();
+                    SkierspawnInterval = _SkierspawnInterval;
+                }
+                else
+                    SkierspawnInterval -= Time.deltaTime;*/
+
     }
 
     void SpawnBoalder()
     {
-        Instantiate(Boalder, new Vector3(Random.Range(x1, x2), 1f, Player.transform.position.z + 20), Quaternion.identity);
+        Instantiate(Boalder, new Vector3(Random.Range(x1 * 2, x2 * 2), 1f, Player.transform.position.z + 20), Quaternion.identity);
     }
 
     public void ObsticalSpawn()
@@ -123,20 +145,6 @@ public class ObjectSpawner : MonoBehaviour
         
         //Instantiate chosen object at chosen position
         GameObject obstical = Instantiate(obj, Pos, Quaternion.Euler(0,Random.Range(0,360),0), ObjParent.transform);
-
-        if (!ThreeD)
-        {
-            //Create results array and contact filter for the OverlapCollider funtion
-            Collider2D[] results = new Collider2D[1];
-            ContactFilter2D contactFilter = new ContactFilter2D();
-
-            //If the tree overlaps with any other obstical, destroy it and spawn another (Stops two objects spawning on top of eachother
-            if (obstical.GetComponent<BoxCollider2D>().OverlapCollider(contactFilter, results) > 0)
-            {
-                Destroy(obstical);
-                ObsticalSpawn();
-            }
-        }
     }
 
     private void JumpSpawner()
@@ -171,17 +179,19 @@ public class ObjectSpawner : MonoBehaviour
     private void PlatformSpawn()
     {
         GameObject plat;
-        if (!boalderState)
+        if (state == State.obstical)
         {
             plat = Platform[Random.Range(0, Platform.Count)];
             if (plat == Platform[3])
-                boalderState = true;
+                state = State.boalder;
         }
-        else
+        else if (state == State.boalder)
         {
             plat = Platform[3];
             boalderPlatNum++;
         }
+        else
+            plat = Platform[3];
         PrevPlat = Instantiate(plat, new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
     }
 

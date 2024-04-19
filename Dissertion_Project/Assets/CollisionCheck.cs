@@ -20,7 +20,16 @@ public class CollisionCheck : MonoBehaviour
     private void Update()
     {
         if (transform.position.y < -3)
-            Destroy(gameObject);
+        {
+            Respawn();
+        }
+
+    }
+
+    void Respawn()
+    {
+        //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,7 +39,7 @@ public class CollisionCheck : MonoBehaviour
             //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
             if (transform.position.z < other.gameObject.transform.position.z)
             {
-                Destroy(gameObject);
+                Respawn();
             }
         }
     }
@@ -42,7 +51,7 @@ public class CollisionCheck : MonoBehaviour
             //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
             if (transform.position.z < collision.gameObject.transform.position.z)
             {
-                Destroy(gameObject);
+                Respawn();
             }
         }
     }
