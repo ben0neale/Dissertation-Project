@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShieldController : MonoBehaviour
 {
     [SerializeField] float _shieldTime;
+    bool flahing = false;
     private float shieldTime;
 
     private void Start()
@@ -20,6 +21,7 @@ public class ShieldController : MonoBehaviour
             if (shieldTime <= 0)
             {
                 shieldTime = _shieldTime;
+                flahing = false;
                 gameObject.SetActive(false);
             }
             else
@@ -27,11 +29,31 @@ public class ShieldController : MonoBehaviour
         }
         else
             ResetTime();
+
+        if (shieldTime <= 1.2f && !flahing)
+        {
+            flahing = true;
+            StartCoroutine(Flash());
+        }
+
+    }
+
+
+    IEnumerator Flash()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(.3f);
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        yield return new WaitForSeconds(.3f);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        yield return new WaitForSeconds(.3f);
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 
     public void ResetTime()
     {
-        
+        shieldTime = _shieldTime;
+        flahing = false;
     }
 
     private void OnTriggerEnter(Collider other)
