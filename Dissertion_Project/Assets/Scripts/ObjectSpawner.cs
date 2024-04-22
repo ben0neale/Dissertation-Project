@@ -36,14 +36,14 @@ public class ObjectSpawner : MonoBehaviour
     [SerializeField] float platSpawnDistance;
     private float _platSpawnDistance;
 
-    enum State
+    public enum State
     {
         obstical,
         boalder,
         rest
     }
 
-    State state = State.obstical;
+    public State state = State.obstical;
 
     int boalderPlatNum = 0;
 
@@ -77,7 +77,7 @@ public class ObjectSpawner : MonoBehaviour
                 ObsticalSpawn();
                 if (_spawnInterval > 0.5)
                     _spawnInterval -= difficultyCurve;
-                spawnInterval = Random.Range(_spawnInterval - .5f, _spawnInterval +.5f);
+                spawnInterval = Random.Range(_spawnInterval * .75f, _spawnInterval * 1.25f);
             }
             else
                 spawnInterval -= Time.deltaTime;

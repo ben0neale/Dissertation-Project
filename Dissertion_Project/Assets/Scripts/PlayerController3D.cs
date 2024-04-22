@@ -128,6 +128,7 @@ public class PlayerController3D : MonoBehaviour
 
     private IEnumerator GameOver()
     {
+        GetComponent<audioController>().PlayCrash();
         PlayerModel.SetActive(false);
         PlayerRagdoll.SetActive(true);
         RB.constraints = RigidbodyConstraints.None;
@@ -175,6 +176,7 @@ public class PlayerController3D : MonoBehaviour
 
         if (other.gameObject.CompareTag("Coin"))
         {
+            GetComponent<audioController>().PlayCoin();
             Destroy(other.gameObject);
             CoinNum++;
             CoinText.text = CoinNum.ToString();
@@ -182,6 +184,7 @@ public class PlayerController3D : MonoBehaviour
 
         if (other.gameObject.CompareTag("Multiplier"))
         {
+            GetComponent<audioController>().PlayPowerup();
             Destroy(other.gameObject);
             if (multiplier == 0)
                 multiplier = 2;
@@ -191,6 +194,7 @@ public class PlayerController3D : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Shield"))
         {
+            GetComponent<audioController>().PlayPowerup();
             Destroy(other.gameObject);
             if (Shield.activeSelf)
                 Shield.GetComponent<ShieldController>().ResetTime();
