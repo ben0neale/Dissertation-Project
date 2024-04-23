@@ -6,17 +6,22 @@ using TMPro;
 
 public class ScoreController : MonoBehaviour
 {
+    ScriptReferencer referencer;
+
     GameObject Player;
     [SerializeField] GameObject highScoreTable;
     TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI multiplierText;
+    public GameObject StateControllerRef;
+
     public float UpdateTime;
     private float _updateTime;
     int score = 0;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        referencer = GameObject.Find("ScriptReferencer").GetComponent<ScriptReferencer>();
         Player = GameObject.FindGameObjectWithTag("Player");
         score = 0;
         scoreText = GetComponent<TextMeshProUGUI>();
@@ -24,20 +29,20 @@ public class ScoreController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (!Player.GetComponent<PlayerController3D>().gameOver)
+        if (StateControllerRef.GetComponent<GamestateController>().GetGameState() == GamestateController.GameState.Play)
         {
             if (_updateTime <= 0)
             {
-                score += 1 + Player.GetComponent<PlayerController3D>().multiplier;
+                score += 1 + Player.GetComponent<ItemCollection>().multiplier;
                 _updateTime = UpdateTime;
             }
             else
                 _updateTime -= Time.deltaTime;
         }
 
-        multiplierText.text = Player.GetComponent<PlayerController3D>().multiplier.ToString() + "x";
+        multiplierText.text = Player.GetComponent<ItemCollection>().multiplier.ToString() + "x";
         scoreText.text = score.ToString();
     }
 
