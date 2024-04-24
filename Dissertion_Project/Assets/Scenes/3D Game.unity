@@ -10877,7 +10877,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 20
+  orthographic size: 23
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10901,13 +10901,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028051802}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3488426, y: -0, z: -0, w: 0.93718135}
-  m_LocalPosition: {x: 0, y: 21.3, z: -32}
+  m_LocalRotation: {x: 0.26723832, y: 0, z: 0, w: 0.9636305}
+  m_LocalPosition: {x: 0, y: 21, z: -48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 40.833, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 31, y: 0, z: 0}
 --- !u!114 &1028051806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11579,7 +11579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: -0.541, y: 1.548, z: 12.312}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 25.6, y: 11.200012}
+  m_AnchoredPosition: {x: 35, y: 7}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1623653346
@@ -11611,8 +11611,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278714112
+  m_fontColor: {r: 0, g: 1, b: 0.027890682, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11629,13 +11629,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.56
-  m_fontSizeBase: 19.56
+  m_fontSize: 23.91
+  m_fontSizeBase: 23.91
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -11886,6 +11886,8 @@ GameObject:
   - component: {fileID: 1666563191}
   - component: {fileID: 1666563192}
   - component: {fileID: 1666563193}
+  - component: {fileID: 1666563194}
+  - component: {fileID: 1666563195}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Spawner
@@ -11920,35 +11922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7689c4bad751a844192acaed75461794, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThreeD: 1
-  Obsticals:
-  - {fileID: 3064769781312020229, guid: 9cbe00f86edcf604a947e8640695adca, type: 3}
-  - {fileID: 328186140349257030, guid: 609547d60b7c12a4da4df3ba617deee2, type: 3}
-  - {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
-  - {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
-  Skier: {fileID: 2562276483811742992, guid: 79d8a3f8a60ac2145abb0afe02ddee94, type: 3}
-  ObjParent: {fileID: 1572555241}
   Player: {fileID: 453065741}
-  Platform:
-  - {fileID: 7119205331311264307, guid: da74173bb0e690449aa7053049911f86, type: 3}
-  - {fileID: 9206584558556122982, guid: e3f36fd70cd120e41b8b397a93d7a36d, type: 3}
-  - {fileID: 6957084580094173896, guid: f532f4a41b2353d4ba3a752061c9fd0c, type: 3}
-  - {fileID: 6535473066917710327, guid: 7aa4338bb208c60498213d0fb72f731e, type: 3}
-  StartPlat: {fileID: 432440006}
-  Jump: {fileID: 4394665053151269060, guid: 77a56ad8b71f3384380fd642900d8f19, type: 3}
-  Boalder: {fileID: 721961225993138779, guid: a1b0a2838b3c7504489d534e9c619720, type: 3}
-  x1: -10
-  x2: 10
-  y1: 60
-  y2: 60
-  _SkierspawnInterval: 3
-  _spawnInterval: 1
-  difficultyCurve: 0.01
-  _jumpSpawnInterval: 1
-  platSpawnDistance: 0
   state: 0
-  _boalderSpawnInterval: 1.5
-  _restTime: 5
+  x1: -10
+  y1: 60
 --- !u!114 &1666563193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11971,6 +11948,61 @@ MonoBehaviour:
   - {fileID: 6437475865292343591, guid: 5860ede11b1644449a7ffcb9c6eab45d, type: 3}
   _SpawnTime: 2
   _powerupSpawnTime: 3
+--- !u!114 &1666563194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666563190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7296943748cccf4e953704402bd1b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 453065741}
+  state: 0
+  x1: 10
+  y1: 60
+  Platform:
+  - {fileID: 7119205331311264307, guid: da74173bb0e690449aa7053049911f86, type: 3}
+  - {fileID: 9206584558556122982, guid: e3f36fd70cd120e41b8b397a93d7a36d, type: 3}
+  - {fileID: 6957084580094173896, guid: f532f4a41b2353d4ba3a752061c9fd0c, type: 3}
+  - {fileID: 6535473066917710327, guid: 7aa4338bb208c60498213d0fb72f731e, type: 3}
+  StageTwoPlatforms:
+  - {fileID: 15287673168673105, guid: 00b571ce7f8527047b54cb747ab96b28, type: 3}
+  - {fileID: 5487873613672919797, guid: 103e59ade8497344f880cb8f4ca367e4, type: 3}
+  - {fileID: 6057809144372064156, guid: 1b10f7f6423f72e42be282a8aba849cb, type: 3}
+  - {fileID: 7289982881647502994, guid: 2990cc26fb04ad54198a1c664bef454b, type: 3}
+  StartPlat: {fileID: 432440006}
+  platSpawnDistance: -80
+  boalderPlatNum: 0
+--- !u!114 &1666563195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666563190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4854c3028edd0464a86243e557cf1682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 453065741}
+  state: 0
+  x1: 10
+  y1: 60
+  Obsticals:
+  - {fileID: 192044, guid: 19682540d8a014522a319b1cf788aee2, type: 3}
+  - {fileID: 3064769781312020229, guid: 9cbe00f86edcf604a947e8640695adca, type: 3}
+  - {fileID: 328186140349257030, guid: 609547d60b7c12a4da4df3ba617deee2, type: 3}
+  Boalder: {fileID: 721961225993138779, guid: a1b0a2838b3c7504489d534e9c619720, type: 3}
+  ObjParent: {fileID: 1572555241}
+  _spawnInterval: 5
+  _boalderSpawnInterval: 2
+  _restTime: 15
+  difficultyCurve: 0.1
 --- !u!1 &1813996645
 GameObject:
   m_ObjectHideFlags: 0

@@ -79,7 +79,7 @@ TerrainCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9206584558556122982}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8967f40686a167f4d9180c61014fcc08, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -6,7 +6,7 @@ public class CollisionCheck : MonoBehaviour
 {
     GameObject Spawner;
     public bool randomScale = true;
-
+    private bool respawning = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +19,7 @@ public class CollisionCheck : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < -3)
+        if (transform.position.y < -1 & !respawning)
         {
             Respawn();
         }
@@ -28,7 +28,8 @@ public class CollisionCheck : MonoBehaviour
 
     void Respawn()
     {
-        //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
+        respawning = true;
+        Spawner.GetComponent<ObsticalSpawner>().ObsticalSpawn();
         Destroy(gameObject);
     }
 
@@ -36,15 +37,14 @@ public class CollisionCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstical"))
         {
-            //Spawner.GetComponent<ObjectSpawner>().ObsticalSpawn();
-            if (transform.position.z < other.gameObject.transform.position.z)
+            if (transform.position.z < other.gameObject.transform.position.z && !respawning)
             {
                 Respawn();
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+/*    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstical"))
         {
@@ -53,6 +53,6 @@ public class CollisionCheck : MonoBehaviour
             {
                 Respawn();
             }
-        }
-    }
+      */  //}
+   // }
 }
