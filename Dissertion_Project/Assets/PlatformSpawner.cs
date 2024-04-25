@@ -30,11 +30,11 @@ public class PlatformSpawner : ObjectSpawner
             _platSpawnDistance += 80;
         }
 
-        if(state == State.boalder)
+        if(stateControllerRef.spawnState == GamestateController.SpawnState.Boalder)
         {
-            if (boalderPlatNum == 2)
+            if (boalderPlatNum >= 2)
             {
-                state = State.rest;
+                stateControllerRef.SetSpawnState(GamestateController.SpawnState.Rest);
                 boalderPlatNum = 0;
             }
         }
@@ -43,16 +43,28 @@ public class PlatformSpawner : ObjectSpawner
     private void PlatformSpawn()
     {
         GameObject plat;
-        if (state == State.obstical)
+        if (stateControllerRef.spawnState == GamestateController.SpawnState.Obstical || stateControllerRef.spawnState == GamestateController.SpawnState.PreObstical)
         {
             if (Player.transform.position.z > -300)
-                plat = Platform[Random.Range(0, Platform.Count)];
+            {
+                if(PrevPlat == Platform[3])
+                    plat = Platform[Random.Range(0, Platform.Count - 1)];
+                else
+                    plat = Platform[Random.Range(0, Platform.Count)];
+            }
+
             else
-                plat = StageTwoPlatforms[Random.Range(0, Platform.Count)];
-            if (plat == Platform[3] || plat == StageTwoPlatforms[3])
-                state = State.boalder;
+            {
+                if (PrevPlat == Platform[3])
+                    plat = StageTwoPlatforms[Random.Range(0, Platform.Count - 1)];
+                else
+                    plat = Platform[Random.Range(0, Platform.Count)];
+            }
+                
+/*            if (plat == Platform[3] || plat == StageTwoPlatforms[3])
+                stateControllerRef.SetSpawnState(GamestateController.SpawnState.Boalder);*/
         }
-        else if (state == State.boalder)
+        else if (stateControllerRef.spawnState == GamestateController.SpawnState.Boalder)
         {
             if (Player.transform.position.z > -300)
                 plat = Platform[3];
@@ -69,5 +81,7 @@ public class PlatformSpawner : ObjectSpawner
         }
 
         PrevPlat = Instantiate(plat, new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
+        if (plat == Platform[3] && stateControllerRef.spawnState == GamestateController.SpawnState.Obstical)
+            stateControllerRef.spawnState = GamestateController.SpawnState.PreBoulder;
     }
 }

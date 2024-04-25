@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameOverController : PlayerAttributes
 {
@@ -11,7 +12,7 @@ public class GameOverController : PlayerAttributes
     // Update is called once per frame
     public void Update()
     {
-        if (transform.position.y < -1 && StateControllerRef.GetComponent<GamestateController>().state == GamestateController.GameState.Play)
+        if (transform.position.y < -.5f && StateControllerRef.GetComponent<GamestateController>().state == GamestateController.GameState.Play)
             StartCoroutine(GameOver());
     }
 
@@ -36,6 +37,7 @@ public class GameOverController : PlayerAttributes
         yield return new WaitForSeconds(3f);
 
         continuePanel.SetActive(false);
+        HighScoreTable.SetActive(true);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -49,6 +51,5 @@ public class GameOverController : PlayerAttributes
             StartCoroutine(GameOver());
         }
     }
-
 
     }

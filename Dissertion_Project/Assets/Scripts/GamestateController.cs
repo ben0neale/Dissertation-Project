@@ -13,7 +13,9 @@ public class GamestateController : MonoBehaviour
 
     public enum SpawnState
     {
+        PreObstical,
         Obstical,
+        PreBoulder,
         Boalder,
         Rest
     }

@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinSpawner : MonoBehaviour
+public class CoinSpawner : ObjectSpawner
 {
     [SerializeField] List<GameObject> Coins;
+    [SerializeField] List<GameObject> RestCoins;
     [SerializeField] List<GameObject> PowerUps;
-    GameObject Player;
     public float _SpawnTime;
     private float SpawnTime;
 
     public float _powerupSpawnTime;
     private float powerupSpawnTime;
+    bool restSpawned = false;
 
     private void Start()
     {
@@ -23,33 +24,41 @@ public class CoinSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SpawnTime <= 0)
+        if (stateControllerRef.spawnState == GamestateController.SpawnState.Rest && !restSpawned)
         {
-            if(GetComponent<ObjectSpawner>().state == ObjectSpawner.State.rest)
-                SpawnTime = _SpawnTime * .25f;
+            restSpawned = true;
+            Instantiate(RestCoins[0], new Vector3(0, .5f, Random.Range(Player.transform.position.z - y1, Player.transform.position.z - y1 - 4)), Quaternion.identity);
+        }          
+        else
+        {
+            if (SpawnTime <= 0)
+            {
+                SpawnTime = Random.Range(_SpawnTime * .75f, _SpawnTime* 1.25f);
+                SpawnCoin();
+            }
             else
-                SpawnTime = Random.Range(_SpawnTime * .75f, _SpawnTime * 1.25f);
-            SpawnCoin();
-        }
-        else
-            SpawnTime -= Time.deltaTime;
+                SpawnTime -= Time.deltaTime;
 
-        if(powerupSpawnTime <= 0)
-        {
-            powerupSpawnTime = Random.Range(_powerupSpawnTime * .75f, _powerupSpawnTime * 1.25f);
-            SpawnPowerup();
+            if (powerupSpawnTime <= 0)
+            {
+                powerupSpawnTime = Random.Range(_powerupSpawnTime * .75f, _powerupSpawnTime * 1.25f);
+                SpawnPowerup();
+            }
+            else
+                powerupSpawnTime -= Time.deltaTime;
         }
-        else
-            powerupSpawnTime -= Time.deltaTime;
+
+/*        if (stateControllerRef.spawnState != GamestateController.SpawnState.Rest && restSpawned)
+            restSpawned = false;*/
     }
 
     void SpawnCoin()
     {
-        Instantiate(Coins[Random.Range(0, Coins.Count)], new Vector3(Random.Range(GetComponent<ObjectSpawner>().x1, -GetComponent<ObjectSpawner>().x1), .5f,Random.Range(Player.transform.position.z - GetComponent<ObjectSpawner>().y1, Player.transform.position.z - GetComponent<ObjectSpawner>().y1 - 4)), Quaternion.identity);
+        Instantiate(Coins[Random.Range(0, Coins.Count)], new Vector3(Random.Range(x1, -x1), .5f,Random.Range(Player.transform.position.z - y1, Player.transform.position.z - y1 - 4)), Quaternion.identity);
     }
 
     void SpawnPowerup()
     {
-        Instantiate(PowerUps[Random.Range(0, PowerUps.Count)], new Vector3(Random.Range(GetComponent<ObjectSpawner>().x1, -GetComponent<ObjectSpawner>().x1), .5f, Random.Range(Player.transform.position.z - GetComponent<ObjectSpawner>().y1, Player.transform.position.z - GetComponent<ObjectSpawner>().y1 - 4)), Quaternion.identity);
+        Instantiate(PowerUps[Random.Range(0, PowerUps.Count)], new Vector3(Random.Range(x1, -x1), .5f, Random.Range(Player.transform.position.z - y1, Player.transform.position.z - y1 - 4)), Quaternion.identity);
     }
 }

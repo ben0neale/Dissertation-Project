@@ -29,7 +29,7 @@ public class CollisionCheck : MonoBehaviour
     void Respawn()
     {
         respawning = true;
-        Spawner.GetComponent<ObsticalSpawner>().ObsticalSpawn();
+        //Spawner.GetComponent<ObsticalSpawner>().ObsticalSpawn();
         Destroy(gameObject);
     }
 
@@ -37,8 +37,9 @@ public class CollisionCheck : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstical"))
         {
-            if (transform.position.z < other.gameObject.transform.position.z && !respawning)
+            if (!respawning)
             {
+                //Destroy(other.gameObject);
                 Respawn();
             }
         }

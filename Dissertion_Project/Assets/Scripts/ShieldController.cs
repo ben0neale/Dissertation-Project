@@ -58,7 +58,7 @@ public class ShieldController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Obstical"))
+        if(other.gameObject.CompareTag("Obstical") || other.gameObject.CompareTag("Boalder"))
         {
             Destroy(other.gameObject);
             gameObject.SetActive(false);

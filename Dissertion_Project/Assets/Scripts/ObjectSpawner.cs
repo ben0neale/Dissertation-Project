@@ -7,22 +7,14 @@ public class ObjectSpawner : MonoBehaviour
 {
     //[SerializeField] GameObject Skier;
     public GameObject Player;
+    public GamestateController stateControllerRef;
     //[SerializeField] GameObject Jump;
 
-/*    public float _SkierspawnInterval;
-    private float SkierspawnInterval;*/
+    /*    public float _SkierspawnInterval;
+        private float SkierspawnInterval;*/
 
-/*    public float _jumpSpawnInterval;
-    private float jumpSpawnInteral;*/
-
-    public enum State
-    {
-        obstical,
-        boalder,
-        rest
-    }
-
-    public State state = State.obstical;
+    /*    public float _jumpSpawnInterval;
+        private float jumpSpawnInteral;*/
 
     public float x1;
     public float y1;

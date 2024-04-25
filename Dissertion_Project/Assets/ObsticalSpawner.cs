@@ -8,6 +8,7 @@ public class ObsticalSpawner : ObjectSpawner
     [SerializeField] GameObject Boalder;
     [SerializeField] GameObject ObjParent;
 
+
     public float _spawnInterval;
     private float spawnInterval;
 
@@ -18,32 +19,43 @@ public class ObsticalSpawner : ObjectSpawner
     float RestTime;
 
     public float difficultyCurve;
+    public float difficultyChangeInterval;
+    private float _difficultyinterval;
 
     // Start is called before the first frame update
     void Start()
     {
+        _difficultyinterval = difficultyChangeInterval;
         boalderSpawnInterval = _boalderSpawnInterval;
-        state = State.obstical;
+        stateControllerRef.SetSpawnState(GamestateController.SpawnState.Obstical);
         RestTime = _restTime;
         spawnInterval = _spawnInterval;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (state == State.obstical)
+        if (stateControllerRef.spawnState == GamestateController.SpawnState.Obstical || stateControllerRef.spawnState == GamestateController.SpawnState.PreObstical)
         {
             if (spawnInterval <= 0)
             {
-                ObsticalSpawn();
-                if (_spawnInterval > 0.5)
-                    _spawnInterval -= difficultyCurve;
                 spawnInterval = Random.Range(_spawnInterval * .75f, _spawnInterval * 1.25f);
+                ObsticalSpawn();
             }
             else
                 spawnInterval -= Time.deltaTime;
+
+            if(_difficultyinterval <= 0)
+            {
+                _difficultyinterval = difficultyChangeInterval;
+                if (_spawnInterval > 0.5)
+                    _spawnInterval -= difficultyCurve;
+            }
+            else
+                _difficultyinterval -= Time.deltaTime;
+
         }
-        else if (state == State.boalder)
+        else if (stateControllerRef.spawnState == GamestateController.SpawnState.Boalder)
         {
             if (boalderSpawnInterval > 0)
                 boalderSpawnInterval -= Time.deltaTime;
@@ -53,11 +65,21 @@ public class ObsticalSpawner : ObjectSpawner
                 SpawnBoalder();
             }
         }
-        else if (state == State.rest)
+        else if (stateControllerRef.spawnState == GamestateController.SpawnState.Rest)
         {
             if (RestTime <= 0)
             {
-                state = State.obstical;
+                stateControllerRef.SetSpawnState(GamestateController.SpawnState.PreObstical);
+                RestTime = _restTime;
+            }
+            else
+                RestTime -= Time.deltaTime;
+        }
+        else if (stateControllerRef.spawnState == GamestateController.SpawnState.PreObstical)
+        {
+            if (RestTime <= 0)
+            {
+                stateControllerRef.SetSpawnState(GamestateController.SpawnState.Obstical);
                 RestTime = _restTime;
             }
             else

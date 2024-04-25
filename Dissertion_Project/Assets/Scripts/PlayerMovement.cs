@@ -108,5 +108,10 @@ public class PlayerMovement : PlayerAttributes
                 }
             }
         }
+
+        if((other.gameObject.name == "WideTerrain(Clone)" || other.gameObject.name == "WideTerrainGrassy(Clone)") && StateControllerRef.GetComponent<GamestateController>().spawnState == GamestateController.SpawnState.PreBoulder)
+        {
+            StateControllerRef.GetComponent<GamestateController>().SetSpawnState(GamestateController.SpawnState.Boalder);
+        }
     }
 }
