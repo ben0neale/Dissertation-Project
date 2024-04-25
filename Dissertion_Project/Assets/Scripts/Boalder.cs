@@ -17,6 +17,7 @@ public class Boalder : MonoBehaviour
 
     private void Update()
     {
+        transform.Rotate(new Vector3(-100 * Time.deltaTime, 0, 0));
         GetComponent<Rigidbody>().velocity = new Vector3(0, 0, -1 * Player.GetComponent<PlayerAttributes>().ZMaxVelocity * speed * Time.deltaTime);
     }
 }
