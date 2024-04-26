@@ -9,6 +9,10 @@ public class PlatformSpawner : ObjectSpawner
     [SerializeField] GameObject StartPlat;
     GameObject PrevPlat;
 
+    public int Difficulty = 10;
+    public float _difficultyTime;
+    private float difficultyTime;
+
     [SerializeField] float platSpawnDistance;
     private float _platSpawnDistance;
 
@@ -17,6 +21,7 @@ public class PlatformSpawner : ObjectSpawner
     // Start is called before the first frame update
     void Start()
     {
+        difficultyTime = _difficultyTime;
         _platSpawnDistance = platSpawnDistance;
         PrevPlat = StartPlat;
     }
@@ -24,6 +29,14 @@ public class PlatformSpawner : ObjectSpawner
     // Update is called once per frame
     void Update()
     {
+        if (difficultyTime <= 0)
+        {
+            difficultyTime = _difficultyTime;
+            if (Difficulty > 1)
+                Difficulty -= 1;
+        }
+        else
+            difficultyTime -= Time.deltaTime;
         if (Player.transform.position.z <= -_platSpawnDistance)
         {
             PlatformSpawn();
@@ -81,6 +94,14 @@ public class PlatformSpawner : ObjectSpawner
         }
 
         PrevPlat = Instantiate(plat, new Vector3(-40, -20, PrevPlat.transform.position.z - 80), Quaternion.identity);
+        foreach(Transform child in PrevPlat.transform)
+        {
+            int rand = Random.Range(1, Difficulty + 1);
+            if (rand > 2)
+            {
+                child.gameObject.SetActive(false);
+            }           
+        }
         if (plat == Platform[3] && stateControllerRef.spawnState == GamestateController.SpawnState.Obstical)
             stateControllerRef.spawnState = GamestateController.SpawnState.PreBoulder;
     }

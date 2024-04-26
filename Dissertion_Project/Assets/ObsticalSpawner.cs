@@ -35,7 +35,7 @@ public class ObsticalSpawner : ObjectSpawner
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (stateControllerRef.spawnState == GamestateController.SpawnState.Obstical || stateControllerRef.spawnState == GamestateController.SpawnState.PreObstical)
+ /*       if (stateControllerRef.spawnState == GamestateController.SpawnState.Obstical || stateControllerRef.spawnState == GamestateController.SpawnState.PreObstical)
         {
             if (spawnInterval <= 0)
             {
@@ -54,8 +54,8 @@ public class ObsticalSpawner : ObjectSpawner
             else
                 _difficultyinterval -= Time.deltaTime;
 
-        }
-        else if (stateControllerRef.spawnState == GamestateController.SpawnState.Boalder)
+        }*/
+        if (stateControllerRef.spawnState == GamestateController.SpawnState.Boalder)
         {
             if (boalderSpawnInterval > 0)
                 boalderSpawnInterval -= Time.deltaTime;
