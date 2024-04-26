@@ -40,7 +40,7 @@ public class ObsticalSpawner : ObjectSpawner
             if (spawnInterval <= 0)
             {
                 spawnInterval = Random.Range(_spawnInterval * .75f, _spawnInterval * 1.25f);
-                ObsticalSpawn();
+                //ObsticalSpawn();
             }
             else
                 spawnInterval -= Time.deltaTime;

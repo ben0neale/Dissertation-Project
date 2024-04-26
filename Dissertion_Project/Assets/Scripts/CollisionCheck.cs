@@ -33,7 +33,7 @@ public class CollisionCheck : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+/*    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Obstical"))
         {
@@ -43,7 +43,7 @@ public class CollisionCheck : MonoBehaviour
                 Respawn();
             }
         }
-    }
+    }*/
 
 /*    private void OnCollisionEnter(Collision collision)
     {
