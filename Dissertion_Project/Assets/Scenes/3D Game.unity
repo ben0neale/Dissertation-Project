@@ -2571,7 +2571,7 @@ MonoBehaviour:
   zSpeed: 0
   AvalancheRef: {fileID: 480305892}
   Xspeed: 350
-  XAccelerationRotation: 5
+  XAccelerationRotation: 2
   ZpeedIncreaseRate: 0.2
   speedIncreaseTime: 5
 --- !u!114 &453065754
@@ -17558,9 +17558,6 @@ MonoBehaviour:
   y1: 60
   Coins:
   - {fileID: 1166749839048336517, guid: 5b8c9d8b99c364e48b788f0a653b0395, type: 3}
-  - {fileID: 6023518391734959756, guid: 27fa305c65d8a504387e2bead32c92ab, type: 3}
-  - {fileID: 5599656325957763769, guid: f457a66b99175b64f8606a262693c5f0, type: 3}
-  - {fileID: 703822883316887609, guid: 666ebbbf47e059b40a15b674d718c4b3, type: 3}
   RestCoins:
   - {fileID: 8257636382876744669, guid: 4695121afd7ffeb4890f50ae2f2afcaa, type: 3}
   PowerUps:
@@ -17596,7 +17593,7 @@ MonoBehaviour:
   - {fileID: 6057809144372064156, guid: 1b10f7f6423f72e42be282a8aba849cb, type: 3}
   - {fileID: 7289982881647502994, guid: 2990cc26fb04ad54198a1c664bef454b, type: 3}
   StartPlat: {fileID: 7119205332624019122}
-  Difficulty: 10
+  Difficulty: 6
   _difficultyTime: 10
   platSpawnDistance: -80
   boalderPlatNum: 0
@@ -20307,6 +20304,10 @@ PrefabInstance:
     - target: {fileID: 751751200381643845, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: _shieldTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776650789578158580, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5162096758125609768, guid: f3785fa06c7bc7a41983ca4d1839619d, type: 3}
       propertyPath: m_LocalPosition.x

@@ -97,10 +97,13 @@ public class PlatformSpawner : ObjectSpawner
         foreach(Transform child in PrevPlat.transform)
         {
             int rand = Random.Range(1, Difficulty + 1);
-            if (rand > 2)
+            if(child.CompareTag("Obstical"))
             {
-                child.gameObject.SetActive(false);
-            }           
+                if (rand > 2)
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }        
         }
         if (plat == Platform[3] && stateControllerRef.spawnState == GamestateController.SpawnState.Obstical)
             stateControllerRef.spawnState = GamestateController.SpawnState.PreBoulder;

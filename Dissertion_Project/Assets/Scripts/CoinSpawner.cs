@@ -27,7 +27,7 @@ public class CoinSpawner : ObjectSpawner
         if (stateControllerRef.spawnState == GamestateController.SpawnState.Rest && !restSpawned)
         {
             restSpawned = true;
-            Instantiate(RestCoins[0], new Vector3(0, .5f, Random.Range(Player.transform.position.z - y1, Player.transform.position.z - y1 - 4)), Quaternion.identity);
+            //Instantiate(RestCoins[0], new Vector3(0, .5f, Random.Range(Player.transform.position.z - y1, Player.transform.position.z - y1 - 4)), Quaternion.identity);
         }          
         else
         {
