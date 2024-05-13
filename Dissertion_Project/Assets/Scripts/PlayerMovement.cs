@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerMovement : PlayerAttributes
 {
@@ -39,10 +38,10 @@ public class PlayerMovement : PlayerAttributes
 
     private void ApplyMovement()
     {
-        if (transform.position.z - AvalancheRef.transform.position.z > avalancheOffset && !stumbling)
-            zSpeed += 1;
-        else if (!stumbling)
-            zSpeed = ZMaxVelocity;
+/*        if (transform.position.z - AvalancheRef.transform.position.z > avalancheOffset && !stumbling)
+            zSpeed += .3F;
+        else if (!stumbling)*/
+        zSpeed = ZMaxVelocity;
 
         xValue = Mathf.Lerp(xValue, MoveValue.x, XAccelerationRotation * Time.deltaTime);
         xrotation = -xValue;
@@ -73,11 +72,11 @@ public class PlayerMovement : PlayerAttributes
     {
         anim.Play("PlayerStumble3D");
         stumbling = true;
-        zSpeed = ZMaxVelocity - 5;
+       // zSpeed = ZMaxVelocity - 5;
 
         yield return new WaitForSeconds(1);
 
-        zSpeed = ZMaxVelocity + 5;
+        //zSpeed = ZMaxVelocity + 5;
 
         yield return new WaitForSeconds(1);
 

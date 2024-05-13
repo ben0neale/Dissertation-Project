@@ -12,7 +12,7 @@ public class Boalder : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        speed = Random.Range(2.25f, 3.25f);
+        speed = Random.Range(2f, 2.7f);
     }
 
     private void Update()
